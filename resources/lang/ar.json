@@ -1,0 +1,37 @@
+{
+    "Verify Your Email Address": "تأكيد البريد الالكتروني",
+    "A fresh verification link has been sent to your email address.": "تم ارسال رسالة تأكيد جديدة إلى بريدك الإالكتروني",
+    "Before proceeding, please check your email for a verification link.": "الرجاء التحقق من بريدك الالكتروني",
+    "If you did not receive the email": "إذا لم تصلك رسالة التأكيد",
+    "click here to request another": "اضغط هنا لطلب رسالة أخرى",
+    "Please confirm your password before continuing.": "الرجاء تأكيد كلمة المرور قبل الاستمرار",
+    "Forgot Your Password?": "هل نسيت كلمة المرور؟",
+    "Send Password Reset Link": "إرسال رابط تغيير كلمة المرور",
+    "ID": "م",
+    "Governorate": "المحافظة",
+    "Kids under 15 years old": "عدد الأطفال أقل من 15 عاماً المنتفعين بالخدمات الصحية الأولية حسب النوع",
+    "Total kids visits": "اجمالي استشارات اطفال",
+    "Females above 15 years old": "عدد الاناث فوق 15 عاما المنتفعات بالخدمات الصحية الأولية",
+    "Total kids and women visits": "اجمالي استشارات الاناث والأطفال",
+    "Total males above 15 years old visits": "اجمالي استشارات الذكور فوق 15 عاما",
+    "Total all visits": "اجمالي كل استشارات",
+    "Date": "التاريخ",
+    "Males": "ذكور",
+    "Females": "اناث",
+    "Total": "اجمالي",
+    "Pregnancy visits": "زيارات متابعة الحمل",
+    "Endangered pregnancies": "حمل خطر",
+    "Other visits": "استشارات أخرى",
+    "Total visits": "اجمالي الاستشارات",
+    "Under 5 years old": "أقل من 5 سنوات",
+    "From 5 to 15 years old": "من 5 إلى 15 سنة",
+
+    "Print": "اطبع",
+    "Export": "تحميل",
+
+    "From:": "من:",
+    "To:": "إلى:",
+
+    "Monthly Records": "سجلات شهرية",
+    "Monthly records for each governorate": "سجلات شهرية لكل محافظة"
+}
