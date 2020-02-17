@@ -11,21 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
-
-// Authentication routes
-Route::Auth(['verify' => true]);
-
-Route::get('home', function () {
-    return view('home');
-})->middleware('auth')->name('home');
-
-Route::get('test', function () {
-    return view('test');
-});
-
 // Switch App Locale
 Route::get('switchLocale', function () {
     $locale = app()->getLocale() === 'en' ? 'ar' : 'en';
@@ -40,15 +25,31 @@ Route::get('switchLocale', function () {
     return back();
 })->name('switchLocale');
 
+// Authentication routes
+Route::Auth(['verify' => true]);
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('index');
+
+Route::get('home', function () {
+    return view('home');
+})->middleware('auth')->name('home');
+
 // Excel import test
-Route::get('import', 'ExcelImportController@showForm')->name('excel.form');
-Route::post('import', 'ExcelImportController@import')->name('excel.import');
+    // Governorates
+    Route::get('import/governorate', 'ExcelImportController@showGovernorateForm')->name('import.governorate.form');
+    Route::post('import/governorate', 'ExcelImportController@importGovernorate')->name('import.governorate.import');
+
+    // Countries
+    Route::get('import/country', 'ExcelImportController@showCountryForm')->name('import.country.form');
+    Route::post('import/country', 'ExcelImportController@importCountry')->name('import.country.import');
 
 // Reports Tables
-Route::get('reports/syria', function () {
-    return view('reports.syria');
+Route::get('reports/governorates', function () {
+    return view('reports.governorates');
 });
 
-Route::get('reports/all-nationalities', function () {
-    return view('reports.table');
+Route::get('reports/countries', function () {
+    return view('reports.countries');
 });

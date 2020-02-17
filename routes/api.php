@@ -21,9 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('reports-of-syria', function () {
+Route::get('reports-of-all-governorates', function () {
     return new ReportCollection(GovernorateReport::all());
-})->name('getAllReportsOfSyria');
+})->name('getAllGovernoratesReports');
 
 Route::get('reports-of-all-countries', function () {
     return new CountriesReportsCollection(CountryReport::all());

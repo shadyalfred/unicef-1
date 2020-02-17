@@ -20,8 +20,8 @@ class CreateCountriesTable extends Migration
         });
 
         // Inserting governorates into the table
-        $seeder = new CountryTableSeeder();
-        $seeder->run();
+        // $seeder = new CountryTableSeeder();
+        // $seeder->run();
     }
 
     /**

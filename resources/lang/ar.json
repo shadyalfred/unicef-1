@@ -9,6 +9,7 @@
     "Send Password Reset Link": "إرسال رابط تغيير كلمة المرور",
     "ID": "م",
     "Governorate": "المحافظة",
+    "Country": "الدولة",
     "Kids under 15 years old": "عدد الأطفال أقل من 15 عاماً المنتفعين بالخدمات الصحية الأولية حسب النوع",
     "Total kids visits": "اجمالي استشارات اطفال",
     "Females above 15 years old": "عدد الاناث فوق 15 عاما المنتفعات بالخدمات الصحية الأولية",
@@ -33,5 +34,14 @@
     "To:": "إلى:",
 
     "Monthly Records": "سجلات شهرية",
-    "Monthly records for each governorate": "سجلات شهرية لكل محافظة"
+    "Monthly records for each governorate": "سجلات شهرية لكل محافظة",
+    "Monthly records for each nationality": "سجلات شهرية لكل جنسية",
+
+    "Upload spreadsheet of nationalities": "رفع تقرير عن الجنسيات",
+    "Monthly Report of nationalities": "تقرير شهرية عن جميع الجنسيات",
+    "Choose a file:": "اختار ملف",
+    "Submit": "إرسال",
+
+    "Upload spreadsheet of governorates": "رفع تقرير عن المحافظات",
+    "Monthly Report of governorates": "تقرير شهرية عن كل محافظة"
 }

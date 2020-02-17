@@ -132,7 +132,7 @@
             // Initiate DataTable
             table = $('#reports-table').DataTable({
                 ajax: {
-                    url: "{{ route('getAllReportsOfSyria') }}",
+                    url: "@yield('api-url')",
                     type: "GET",
                     beforeSend: (request) => {
                         request.setRequestHeader("Content-Language", "{{ app()->getLocale() }}");
@@ -140,7 +140,7 @@
                 },
                 columns: [
                     { data: "id" },
-                    { data: "governorate" },
+                    { data: "@yield('table-col')" },
                     { data: "males_under_5" },
                     { data: "males_from_5_to_15" },
                     { data: "females_under_5" },
@@ -239,7 +239,7 @@
                             <thead>
                                 <tr>
                                     <th rowspan="3">@lang('ID')</th>
-                                    <th rowspan="3">@lang('Governorate')</th>
+                                    @yield('table-head')
                                     <th colspan="6">@lang('Kids under 15 years old')</th>
                                     <th rowspan="3">@lang('Total kids visits')</th>
                                     <th colspan="4">@lang('Females above 15 years old')</th>
@@ -258,12 +258,12 @@
                                     <th rowspan="2">@lang('Total visits')</th>
                                 </tr>
                                 <tr>
-                                                <th>@lang('Under 5 years old')</th>
-                                                <th>@lang('From 5 to 15 years old')</th>
-                                                <th>@lang('Under 5 years old')</th>
-                                                <th>@lang('From 5 to 15 years old')</th>
-                                                <th>@lang('Under 5 years old')</th>
-                                                <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
                                 </tr>
                             </thead>
                             <tbody>

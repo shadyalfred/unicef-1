@@ -62,6 +62,7 @@ class GovernorateTableSeeder extends Seeder
                 'name_en' => $governorates_en[$i]
             ]);
         }
+
     }
 }
 
