@@ -1,5 +1,7 @@
 @extends('layouts.excel-form')
 
+@section('page-title-breadcrumb', 'Imoprt governorates report')
+
 @section('form-title')
     @lang('Upload spreadsheet of governorates')
 @endsection

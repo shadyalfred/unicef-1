@@ -1,5 +1,6 @@
 @extends('layouts.report')
 
+@section('page-title-breadcrumb', 'Nationalities records')
 
 @section('report-page-title')
     @lang('Monthly Records')

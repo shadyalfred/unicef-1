@@ -1,5 +1,7 @@
 @extends('layouts.excel-form')
 
+@section('page-title-breadcrumb', 'Import nationalities report')
+
 @section('form-title')
     @lang('Upload spreadsheet of nationalities')
 @endsection

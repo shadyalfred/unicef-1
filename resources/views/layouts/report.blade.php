@@ -28,6 +28,8 @@
     <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
 
+@section('page-title', 'Report')
+
 @section('content')
     <!-- ============================================================== -->
     <!-- Start Page Content -->

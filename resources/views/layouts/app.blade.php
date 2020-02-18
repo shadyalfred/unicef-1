@@ -570,7 +570,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb-item active">@yield('page-title')</li>
+                                <li class="breadcrumb-item active">@yield('page-title-breadcrumb')</li>
                             </ol>
                         </div>
                     </div>
