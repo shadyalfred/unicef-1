@@ -6,7 +6,7 @@
     <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('page-title', 'Upload Spreadsheet')
+@section('page-title', __('Upload Spreadsheet'))
 
 @section('form-content')
 

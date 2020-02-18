@@ -17,6 +17,7 @@
     "Total males above 15 years old visits": "اجمالي استشارات الذكور فوق 15 عاما",
     "Total all visits": "اجمالي كل استشارات",
     "Date": "التاريخ",
+    "Date:": "التاريخ:",
     "Males": "ذكور",
     "Females": "اناث",
     "Total": "اجمالي",
@@ -38,10 +39,15 @@
     "Monthly records for each nationality": "سجلات شهرية لكل جنسية",
 
     "Upload spreadsheet of nationalities": "رفع تقرير عن الجنسيات",
-    "Monthly Report of nationalities": "تقرير شهرية عن جميع الجنسيات",
+    "Monthly Report of nationalities": "تقرير شهري عن جميع الجنسيات",
     "Choose a file:": "اختار ملف",
     "Submit": "إرسال",
 
     "Upload spreadsheet of governorates": "رفع تقرير عن المحافظات",
-    "Monthly Report of governorates": "تقرير شهرية عن كل محافظة"
+    "Monthly Report of governorates": "تقرير شهرية عن كل محافظة",
+
+    "Governorates records": "سجلات المحافظات",
+    "Nationalities records": "سجلات الجنسيات",
+
+    "Upload Spreadsheet": "رفع جدول البيانات"
 }

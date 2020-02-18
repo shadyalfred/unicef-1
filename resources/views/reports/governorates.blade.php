@@ -1,6 +1,6 @@
 @extends('layouts.report')
 
-@section('page-title-breadcrumb', 'Governorates records')
+@section('page-title-breadcrumb', __('Governorates records'))
 
 @section('report-page-title')
     @lang('Monthly Records')
