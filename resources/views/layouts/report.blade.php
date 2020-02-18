@@ -28,38 +28,108 @@
     <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('body-class', 'skin-default fixed-layout')
-
 @section('content')
     <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
+    <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader__figure"></div>
-            <p class="loader__label">UNICEF Egypt</p>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @yield('report-page-title')
+                    </h4>
+                    <h6 class="card-subtitle">
+                        @yield('report-page-subtitle')
+                    </h6>
+                    <div class="m-3">
+                        <button id="print-table-btn" class="btn btn-primary">
+                            @lang('Print')
+                        </button>
+
+                        <button id="export-table-btn" class="btn btn-primary">
+                            @lang('Export')
+                        </button>
+                    </div>
+
+                    <div class="table-responsive m-t-40">
+                        <table id="reports-table"
+                            class="display nowrap table table-hover table-striped table-bordered"
+                            cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th rowspan="3">@lang('ID')</th>
+                                    @yield('table-head')
+                                    <th colspan="6">@lang('Kids under 15 years old')</th>
+                                    <th rowspan="3">@lang('Total kids visits')</th>
+                                    <th colspan="4">@lang('Females above 15 years old')</th>
+                                    <th rowspan="3">@lang('Total kids and women visits')</th>
+                                    <th rowspan="3">@lang('Total males above 15 years old visits')</th>
+                                    <th rowspan="3">@lang('Total all visits')</th>
+                                    <th rowspan="3">@lang('Date')</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">@lang('Males')</th>
+                                    <th colspan="2">@lang('Females')</th>
+                                    <th colspan="2">@lang('Total')</th>
+                                    <th rowspan="2">@lang('Pregnancy visits')</th>
+                                    <th rowspan="2">@lang('Endangered pregnancies')</th>
+                                    <th rowspan="2">@lang('Other visits')</th>
+                                    <th rowspan="2">@lang('Total visits')</th>
+                                </tr>
+                                <tr>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="3">@lang('ID')</th>
+                                    @yield('table-foot')
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th rowspan="3">@lang('Total kids visits')</th>
+                                    <th rowspan="2">@lang('Pregnancy visits')</th>
+                                    <th rowspan="2">@lang('Endangered pregnancies')</th>
+                                    <th rowspan="2">@lang('Other visits')</th>
+                                    <th rowspan="2">@lang('Total visits')</th>
+                                    <th rowspan="3">@lang('Total kids and women visits')</th>
+                                    <th rowspan="3">@lang('Total males above 15 years old visits')</th>
+                                    <th rowspan="3">@lang('Total all visits')</th>
+                                    <th rowspan="3">@lang('Date')</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">@lang('Males')</th>
+                                    <th colspan="2">@lang('Females')</th>
+                                    <th colspan="2">@lang('Total')</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6">@lang('Kids under 15 years old')</th>
+                                    <th colspan="4">@lang('Females above 15 years old')</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+
 @endsection
 
 @section('javascript')
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/node_modules/jquery/jquery-3.2.1.min.js') }}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('assets/node_modules/popper/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('assets/dist/js/perfect-scrollbar.jquery.min.js') }}"></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('assets/dist/js/waves.js') }}"></script>
-    <!--Menu sidebar -->
-    <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
-    <!--stickey kit -->
-    <script src="{{ asset('assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/sparkline/jquery.sparkline.min.js') }}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
+    @parent
+
     {{-- Datepicker --}}
     <script type="text/javascript" src="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <!-- This is data table -->
