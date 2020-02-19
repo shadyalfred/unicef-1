@@ -28,3 +28,9 @@ Route::get('reports-of-all-governorates', function () {
 Route::get('reports-of-all-countries', function () {
     return new CountriesReportsCollection(CountryReport::all());
 })->name('getAllCountriesReports');
+
+Route::get('get-monthly-totals-for-governorates/{year}', 'GovernorateReportController@getTotalPerMonth')
+    ->name('getTotalsForGovernoratesPerEachMonth');
+
+Route::get('get-monthly-totals-for-nationalities/{year}', 'CountryReportController@getTotalPerMonth')
+    ->name('getTotalsForNationalitiesPerEachMonth');

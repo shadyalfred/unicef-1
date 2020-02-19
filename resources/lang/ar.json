@@ -49,5 +49,9 @@
     "Governorates records": "سجلات المحافظات",
     "Nationalities records": "سجلات الجنسيات",
 
-    "Upload Spreadsheet": "رفع جدول البيانات"
+    "Upload Spreadsheet": "رفع جدول البيانات",
+    "Report": "تقرير",
+
+    "Total per each month": "اجمالي المستفيدين في كل شهر",
+    "Total per each governorate": "اجمالي المستفيدين في كل محافظة"
 }

@@ -28,12 +28,13 @@
     <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('page-title', 'Report')
+@section('page-title', __('Report'))
 
 @section('content')
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
+    {{-- Table --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -124,6 +125,55 @@
             </div>
         </div>
     </div>
+
+    {{-- Start charts --}}
+    {{-- Select year --}}
+    <div class="row">
+        <div class="col-2 mx-auto text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @lang('Select year')
+                    </h4>
+                    <div>
+                        <input type="text" id="year-input-for-chart" style="display: inline-block;
+                                                                            width: 50px;
+                                                                            border: none;
+                                                                            border-bottom: 1px solid;
+                                                                            text-align: center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Charts --}}
+    <div class="row">
+        {{-- Total per each month --}}
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @lang('Total per each month')
+                    </h4>
+                    <div>
+                        <canvas id="chart-1" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Total per each governorate/country --}}
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @yield('second-chart-title')
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End Page Content -->
     <!-- ============================================================== -->
 
@@ -137,11 +187,13 @@
     <!-- This is data table -->
     <script type="text/javascript" src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/node_modules/moment/moment.min.js') }}"></script>
-    {{-- <script type="text/javascript" src="{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('assets/node_modules/moment/moment-with-locales.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/node_modules/datatables.net_plugins/datetime.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}"></script>
     {{-- Export to Excel --}}
     <script type="text/javascript" src="{{ asset('assets/node_modules/sheetjs/xlsx.full.min.js') }}"></script>
+    {{-- Charts --}}
+    <script src="{{ asset('assets/node_modules/Chart.js/Chart.min.js') }}"></script>
     <!-- END - This is for export functionality only --> 
 
     {{-- Declare function --}}
@@ -194,13 +246,25 @@
             
             return customTable;
         }
+
+        // Chart Helper Functions
+        function updateChart(chart, api) {
+            while (chart.data.datasets[0].data.length > 0) {
+                chart.data.datasets[0].data.pop();
+            };
+
+            fetch(api)
+                .then((response) => response.json())
+                .then((result) => chart.data.datasets[0].data.push(...result))
+                .then(() => chart.update())
+        }
     </script>
 
     {{-- Datatable and Datepicker --}}
     <script>
         let table;
-
         $(document).ready(function() {
+        // -- Start Table --
             // Initiate DataTable
             table = $('#reports-table').DataTable({
                 ajax: {
@@ -245,7 +309,6 @@
                     fixedColumns: true // Use for RTL
                 @endif
             });
-
                 
             // Create datepickers inputs
             $('#reports-table_filter').ready(function () {
@@ -279,9 +342,7 @@
                     todayBtn: "linked",
                     autoclose: true,
                     todayHighlight: true,
-                }).on('changeDate', (e) => {
-                        table.draw();
-                    });
+                }).on('changeDate', (e) => table.draw() );
                 startDate.datepicker('setDate', moment().startOf('year').format('MM-YYYY'));
 
                 const endDate = $('#ffin');
@@ -298,8 +359,11 @@
                 endDate.datepicker('setDate', moment().format('MM-YYYY'));
 
                 // Importing range_dates.js to sort table by date input
-                $.getScript("{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}");
-            })
+                endDate.ready(() => {
+                    $.getScript("{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}");
+                });
+
+            }).ready(() => table.draw());
 
             // Print button
             $('#print-table-btn').on('click', () => {
@@ -372,6 +436,52 @@
 
                 XLSX.writeFile(wb, 'report.xlsx');
             })
+        // -- End Table --
+
+        // -- Start Chart --
+            // Initiate datepicker
+            const chartYearInput = $('#year-input-for-chart');
+            chartYearInput.datepicker({
+                format: "yyyy",
+                startView: 2,
+                minViewMode: 2,
+                todayBtn: "linked",
+                autoclose: true,
+                todayHighlight: true,
+            }).datepicker('setDate', 'today')
+              .on('change', () => updateChart(chart1, chart1Api + chartYearInput.val()));
+
+            // Initiate Chart1
+            @if (app()->getLocale() === 'ar')
+                const months = moment().locale('ar').localeData().months();
+            @else
+                const months = moment.months();
+            @endif
+
+            const chart1Api = "@yield('chart1-api')/";
+
+            const chart1 = new Chart(document.getElementById("chart-1"),
+                {
+                    "type": "line",
+                    "data":
+                        {
+                            "labels": months,
+                            "datasets":
+                                [
+                                    {
+                                        "label": "@lang('Total per each month')",
+                                        "data": [],
+                                        "fill": true,
+                                        "borderColor": "rgb(75, 192, 192)",
+                                        "lineTension": 0.3
+                                    }
+                                ]
+                        },
+                    "options": {}
+                }
+            );
+            updateChart(chart1, chart1Api + chartYearInput.val());
+        // -- End Chart --
         });
     </script>
 @endsection

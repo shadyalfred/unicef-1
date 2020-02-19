@@ -6,7 +6,7 @@ use App\GovernorateReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GovernorateReportController extends Controller
+class CountryReportController extends Controller
 {
     /**
      * Returns an array of the total of each month for a given year.
@@ -15,9 +15,9 @@ class GovernorateReportController extends Controller
      */
     public function getTotalPerMonth($year)
     {
-        $data = [null, null, null, null, null, null, null, null, null, null, null, null];  
- 
-        $totals = DB::table('governorate_reports')
+        $data = [null, null, null, null, null, null, null, null, null, null, null, null];
+        
+        $totals = DB::table('country_reports')
                         ->whereYear('date', '=', $year)
                         ->orderBy('date')
                         ->select(
@@ -29,7 +29,7 @@ class GovernorateReportController extends Controller
                             )
                         ->groupBy('month')
                         ->get();
-
+        
         foreach ($totals as $total) {
             $data[$total->month - 1] = $total->total;
         }
@@ -70,10 +70,10 @@ class GovernorateReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function show(GorvernorateReport $gorvernorateReport)
+    public function show(GovernorateReport $governorateReport)
     {
         //
     }
@@ -81,10 +81,10 @@ class GovernorateReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(GorvernorateReport $gorvernorateReport)
+    public function edit(GovernorateReport $governorateReport)
     {
         //
     }
@@ -93,10 +93,10 @@ class GovernorateReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GorvernorateReport $gorvernorateReport)
+    public function update(Request $request, GovernorateReport $governorateReport)
     {
         //
     }
@@ -104,10 +104,10 @@ class GovernorateReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GorvernorateReport $gorvernorateReport)
+    public function destroy(GovernorateReport $governorateReport)
     {
         //
     }
