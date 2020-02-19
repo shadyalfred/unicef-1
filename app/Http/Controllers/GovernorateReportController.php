@@ -27,7 +27,7 @@ class GovernorateReportController extends Controller
                                      AS total"),
                             DB::raw("DATE_FORMAT(date, '%m') AS month")
                             )
-                        ->groupBy("month")
+                        ->groupBy(['month', 'date'])
                         ->get();
 
         foreach ($totals as $total) {
