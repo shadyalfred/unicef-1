@@ -6,8 +6,6 @@
         href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
-    <!-- Custom CSS -->
-    <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet">
     <style>
         table th {
             text-align: center;

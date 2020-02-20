@@ -13,6 +13,9 @@
 
     <title>@yield('title', 'UNICEF Egypt')</title>
 
+    {{-- Custom CSS --}}
+    <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet">
+
     <!-- Styles -->
     @yield('css')
 </head>
@@ -78,7 +81,7 @@
                     <ul class="navbar-nav my-lg-0">
                         {{-- Switch Locale --}}
                         <li class="nav-item right-side-toggle">
-                            <a class="nav-link waves-effect waves-light" href="{{ route('switchLocale') }}" data-toggle="tooltip" title="Switch Language">
+                            <a class="nav-link waves-effect waves-light" href="{{ route('switchLocale') }}" data-toggle="tooltip" title="@lang('Switch Language')">
                                 <i class="fas fa-language"
                                    style="font-size: 1.8rem; vertical-align: middle"></i>
                             </a>
@@ -101,7 +104,7 @@
                     <div class="user-pro-body">
                         <div><img src="{{ asset('assets/images/users/2.jpg') }}" alt="user-img" class="img-circle"></div>
                         <div class="dropdown">
-                            <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
+                            <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
                             <div class="dropdown-menu animated flipInY">
                                 <!-- text-->
                                 <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
@@ -112,8 +115,9 @@
                                 <!-- text-->
                                 <div class="dropdown-divider"></div>
                                 <!-- Log out -->
-                                <form action="{{ route('logout') }}" method="post">
-                                    <a type="submit" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                                <a href="javascript:void(0)" onclick="document.getElementById('log-out-form').submit()" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                                <form id="log-out-form" action="{{ route('logout') }}" method="post">
+                                    @csrf
                                 </form>
                             </div>
                         </div>
@@ -168,7 +172,9 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb-item active">@yield('page-title-breadcrumb')</li>
+                                @if (Route::currentRouteName() !== 'home')
+                                    <li class="breadcrumb-item active">@yield('page-title-breadcrumb')</li>
+                                @endif
                             </ol>
                         </div>
                     </div>

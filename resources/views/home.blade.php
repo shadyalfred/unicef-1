@@ -1,5 +1,24 @@
-<h3>@lang('index.home')</h3>
+@extends('layouts.app')
 
-<h2>Current language: <strong>{{ app()->getLocale() }}</strong></h2>
+@section('page-title', __('Home'))
 
-<a href="{{ route('switchLocale') }}">Locale</a>
+@section('content')
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    {{-- Table --}}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @lang('Welcome!')
+                    </h4>
+                    <p>
+                        @lang('Please use the sidebar to navigate.')
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

@@ -29,27 +29,29 @@ Route::get('switchLocale', function () {
 Route::Auth(['verify' => true]);
 
 Route::get('/', function () {
-    redirect()->route('home');
+    return redirect()->route('home');
 })->name('index');
 
 Route::get('home', function () {
-    redirect()->route('reports.governorates');
+    return view('home');
 })->middleware('auth')->name('home');
 
-// Excel import test
-    // Governorates
-    Route::get('import/governorate', 'ExcelImportController@showGovernorateForm')->name('import.governorate.form');
-    Route::post('import/governorate', 'ExcelImportController@importGovernorate')->name('import.governorate.import');
+Route::middleware('auth')->group(function () {
+    // Excel import test
+        // Governorates
+        Route::get('import/governorate', 'ExcelImportController@showGovernorateForm')->name('import.governorate.form');
+        Route::post('import/governorate', 'ExcelImportController@importGovernorate')->name('import.governorate.import');
 
-    // Countries
-    Route::get('import/country', 'ExcelImportController@showCountryForm')->name('import.country.form');
-    Route::post('import/country', 'ExcelImportController@importCountry')->name('import.country.import');
+        // Countries
+        Route::get('import/country', 'ExcelImportController@showCountryForm')->name('import.country.form');
+        Route::post('import/country', 'ExcelImportController@importCountry')->name('import.country.import');
 
-// Reports Tables
-Route::get('reports/governorates', function () {
-    return view('reports.governorates');
-})->name('reports.governorates');
+    // Reports Tables
+    Route::get('reports/governorates', function () {
+        return view('reports.governorates');
+    })->name('reports.governorates');
 
-Route::get('reports/countries', function () {
-    return view('reports.countries');
-})->name('reports.countries');
+    Route::get('reports/countries', function () {
+        return view('reports.countries');
+    })->name('reports.countries');
+});

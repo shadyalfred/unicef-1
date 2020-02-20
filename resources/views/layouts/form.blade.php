@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-<!-- Custom CSS -->
-<link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet">
-<!-- page css -->
-{{-- <link href="{{ asset('assets/dist/css/pages/file-upload.css') }}" rel="stylesheet"> --}}
-@endsection
-
 @section('content')
     <!-- ============================================================== -->
     <!-- Start Page Content -->
