@@ -29,11 +29,11 @@ Route::get('switchLocale', function () {
 Route::Auth(['verify' => true]);
 
 Route::get('/', function () {
-    return view('welcome');
+    redirect()->route('home');
 })->name('index');
 
 Route::get('home', function () {
-    return view('home');
+    redirect()->route('reports.governorates');
 })->middleware('auth')->name('home');
 
 // Excel import test
@@ -48,8 +48,8 @@ Route::get('home', function () {
 // Reports Tables
 Route::get('reports/governorates', function () {
     return view('reports.governorates');
-});
+})->name('reports.governorates');
 
 Route::get('reports/countries', function () {
     return view('reports.countries');
-});
+})->name('reports.countries');
