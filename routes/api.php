@@ -34,3 +34,9 @@ Route::get('get-monthly-totals-for-governorates/{year}', 'GovernorateReportContr
 
 Route::get('get-monthly-totals-for-nationalities/{year}', 'CountryReportController@getTotalPerMonth')
     ->name('getTotalsForNationalitiesPerEachMonth');
+
+Route::get('get-total-of-males-and-females-for-governorates/{year}', 'GovernorateReportController@getTotalMalesFemales')
+    ->name('getTotalGovernoratesMalesFemales');
+
+Route::get('get-total-of-males-and-females-for-nationalities/{year}', 'CountryReportController@getTotalMalesFemales')
+    ->name('getTotalNationalitiesMalesFemales');

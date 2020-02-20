@@ -23,20 +23,16 @@
 @section('table-foot')
     <th rowspan="3">@lang('Governorate')</th>
 @endsection
+
+@section('table-col', "governorate")
+
+@section('api-url', route('getAllGovernoratesReports'))
 {{-- End table --}}
 
 {{-- Start charts --}}
 {{-- First chart api --}}
 @section('chart1-api', route('getTotalsForGovernoratesPerEachMonth', ''))
-{{-- Second chart title --}}
-@section('second-chart-title', __('Total per each governorate'))
+{{-- Second chart api --}}
+@section('chart2-api', route('getTotalGovernoratesMalesFemales', ''))
 {{-- End charts --}}
 
-
-@section('table-col', "governorate")
-
-@section('api-url', route('getAllGovernoratesReports'))
-
-@section('table-head')
-    <th rowspan="3">@lang('Governorate')</th>
-@endsection

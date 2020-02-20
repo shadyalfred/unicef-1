@@ -36,6 +36,23 @@ class CountryReportController extends Controller
 
         return response()->json($data);
     }
+
+    public function getTotalMalesFemales($year)
+    {
+        $totals = DB::table('country_reports')
+                        ->whereYear('date', '=', $year)
+                        ->select(
+                            DB::raw("SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                     AS males"),
+                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                     AS females")
+                            )
+                        ->get();
+
+        return response()->json([$totals[0]->males, $totals[0]->females]);
+    }
+
     /**
      * Display a listing of the resource.
      *

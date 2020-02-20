@@ -23,19 +23,15 @@
 @section('table-foot')
     <th rowspan="3">@lang('Country')</th>
 @endsection
+
+@section('api-url', route('getAllCountriesReports'))
+
+@section('table-col', "country")
 {{-- End table --}}
 
 {{-- Start charts --}}
 {{-- First chart api --}}
 @section('chart1-api', route('getTotalsForNationalitiesPerEachMonth', ''))
-{{-- Second chart title --}}
-@section('second-chart-title', __('Total per each nationality'))
+{{-- Second chart api --}}
+@section('chart2-api', route('getTotalNationalitiesMalesFemales', ''))
 {{-- End charts --}}
-
-@section('api-url', route('getAllCountriesReports'))
-
-@section('table-col', "country")
-
-@section('table-head')
-    <th rowspan="3">@lang('Country')</th>
-@endsection

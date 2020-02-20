@@ -168,8 +168,12 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        @yield('second-chart-title')
+                        @lang('Total males and females')
                     </h4>
+
+                   <div>
+                        <canvas id="chart-2" height="150"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -449,7 +453,10 @@
                 autoclose: true,
                 todayHighlight: true,
             }).datepicker('setDate', 'today')
-              .on('change', () => updateChart(chart1, chart1Api + chartYearInput.val()));
+              .on('change', () => {
+                    updateChart(chart1, chart1Api + chartYearInput.val());
+                    updateChart(chart2, chart2Api + chartYearInput.val())
+                });
 
             // Initiate Chart1
             @if (app()->getLocale() === 'ar')
@@ -458,7 +465,6 @@
                 const months = moment.months();
             @endif
 
-            const chart1Api = "@yield('chart1-api')/";
 
             const chart1 = new Chart(document.getElementById("chart-1"),
                 {
@@ -480,7 +486,27 @@
                     "options": {}
                 }
             );
+            const chart1Api = "@yield('chart1-api')/";
             updateChart(chart1, chart1Api + chartYearInput.val());
+
+            // Initiate Chart2
+            const chart2 = new Chart(document.getElementById("chart-2"),
+                {
+                    "type": "pie",
+                    "data": {
+                        "labels": ["@lang('Males')", "@lang('Females')"],
+                        "datasets": [
+                            {
+                                "label": "@lang('Total of males and females')",
+                                "data": [],
+                                "backgroundColor": ["rgb(54, 162, 235)", "rgb(255, 99, 132)"]
+                            }
+                        ]
+                    }
+                }
+            );
+            const chart2Api = "@yield('chart2-api')/";
+            updateChart(chart2, chart2Api + chartYearInput.val());
         // -- End Chart --
         });
     </script>
