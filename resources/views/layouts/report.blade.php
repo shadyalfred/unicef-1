@@ -51,6 +51,10 @@
                         <button id="export-table-btn" class="btn btn-primary">
                             @lang('Export')
                         </button>
+
+                        <button id="popup-table-btn" class="btn btn-primary">
+                            @lang('Show Table')
+                        </button>
                     </div>
 
                     <div class="table-responsive m-t-40">
@@ -433,10 +437,78 @@
 
             })
 
+            // Export as .xlsx button
             $('#export-table-btn').on('click', () => {
                 const wb = XLSX.utils.table_to_book(getPrintableTable(), {sheet: "Sheet 1"});
 
                 XLSX.writeFile(wb, 'report.xlsx');
+            })
+
+
+            $('#popup-table-btn').on('click', () => {
+                const params = [
+                    'toolbar=no',
+                    'location=no',
+                    'directories=no',
+                    'menubar=no',
+                    'titlebar=no',
+                    'status=no',
+                    'postwindow',
+                    'fullscreen=yes',
+                    'centerscreen=yes',
+                    'personalbar=no'
+                ].join(',');
+
+                const customTable = window.open('', 'popup', params);
+                customTable.document.write(`
+                    <div class="table-responsive m-t-40 dataTables_wrapper">
+                        <table id="reports-table"
+                            class="display table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th rowspan="3">@lang('ID')</th>
+                                    @yield('table-head')
+                                    <th colspan="6">@lang('Kids under 15 years old')</th>
+                                    <th rowspan="3">@lang('Total kids visits')</th>
+                                    <th colspan="4">@lang('Females above 15 years old')</th>
+                                    <th rowspan="3">@lang('Total kids and women visits')</th>
+                                    <th rowspan="3">@lang('Total males above 15 years old visits')</th>
+                                    <th rowspan="3">@lang('Total all visits')</th>
+                                    <th rowspan="3">@lang('Date')</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">@lang('Males')</th>
+                                    <th colspan="2">@lang('Females')</th>
+                                    <th colspan="2">@lang('Total')</th>
+                                    <th rowspan="2">@lang('Pregnancy visits')</th>
+                                    <th rowspan="2">@lang('Endangered pregnancies')</th>
+                                    <th rowspan="2">@lang('Other visits')</th>
+                                    <th rowspan="2">@lang('Total visits')</th>
+                                </tr>
+                                <tr>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                    <th>@lang('Under 5 years old')</th>
+                                    <th>@lang('From 5 to 15 years old')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                `);
+
+                for (let index = 0; index < table.rows({page: 'current'}).nodes().length; index++) {
+                    let elementCopy = table.rows({page: 'current'}).nodes()[index].cloneNode(true);
+                    customTable.document.getElementsByTagName('tbody')[0].appendChild(elementCopy);
+                }
+
+                $("link, style").each(function() {
+                    $(customTable.document.head)
+                        .append($(this).clone())
+                })
             })
         // -- End Table --
 
