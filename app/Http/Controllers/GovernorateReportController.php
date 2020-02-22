@@ -91,7 +91,7 @@ class GovernorateReportController extends Controller
                                         other_visits + females_under_5 + females_from_5_to_15)
                                      AS 'females'")
                             )
-                        ->groupBy(['name_en', 'name_ar'])
+                        ->groupBy(['governorate_id', 'name_en', 'name_ar'])
                         ->get();
 
         return $totals;

@@ -84,7 +84,7 @@ class CountryReportController extends Controller
                                         other_visits + females_under_5 + females_from_5_to_15)
                                      AS 'females'")
                             )
-                        ->groupBy(['country_en', 'country_ar'])
+                        ->groupBy(['country_id', 'country_en', 'country_ar'])
                         ->get();
 
         return $totals;
