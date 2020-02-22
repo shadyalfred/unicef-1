@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('css')
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -10,6 +9,10 @@
         table th {
             text-align: center;
             vertical-align: middle !important;
+        }
+        #fini:hover,
+        #ffin:hover {
+            cursor: pointer;
         }
     </style>
     
@@ -127,59 +130,6 @@
             </div>
         </div>
     </div>
-
-    {{-- Start charts --}}
-    {{-- Select year --}}
-    <div class="row">
-        <div class="col-2 mx-auto text-center">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        @lang('Select year')
-                    </h4>
-                    <div>
-                        <input type="text" id="year-input-for-chart" style="display: inline-block;
-                                                                            width: 50px;
-                                                                            border: none;
-                                                                            border-bottom: 1px solid;
-                                                                            text-align: center">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Charts --}}
-    <div class="row">
-        {{-- Total per each month --}}
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        @lang('Total per each month')
-                    </h4>
-                    <div>
-                        <canvas id="chart-1" height="150"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- Total per each governorate/country --}}
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        @lang('Total males and females')
-                    </h4>
-
-                   <div>
-                        <canvas id="chart-2" height="150"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- End Page Content -->
     <!-- ============================================================== -->
 
@@ -203,7 +153,7 @@
     <!-- END - This is for export functionality only --> 
 
     {{-- Declare function --}}
-    <script>
+    <script type="text/javascript">
         function getPrintableTable() {
             const customTable = document.createElement('table');
             customTable.setAttribute('id', 'reports-table');
@@ -252,25 +202,12 @@
             
             return customTable;
         }
-
-        // Chart Helper Functions
-        function updateChart(chart, api) {
-            while (chart.data.datasets[0].data.length > 0) {
-                chart.data.datasets[0].data.pop();
-            };
-
-            fetch(api)
-                .then((response) => response.json())
-                .then((result) => chart.data.datasets[0].data.push(...result))
-                .then(() => chart.update())
-        }
     </script>
 
     {{-- Datatable and Datepicker --}}
-    <script>
+    <script type="text/javascript">
         let table;
         $(document).ready(function() {
-        // -- Start Table --
             // Initiate DataTable
             table = $('#reports-table').DataTable({
                 ajax: {
@@ -368,7 +305,6 @@
                 endDate.ready(() => {
                     $.getScript("{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}");
                 });
-
             }).ready(() => table.draw());
 
             // Print button
@@ -444,7 +380,7 @@
                 XLSX.writeFile(wb, 'report.xlsx');
             })
 
-
+            // Popup table button
             $('#popup-table-btn').on('click', () => {
                 const params = [
                     'toolbar=no',
@@ -510,74 +446,6 @@
                         .append($(this).clone())
                 })
             })
-        // -- End Table --
-
-        // -- Start Chart --
-            // Initiate datepicker
-            const chartYearInput = $('#year-input-for-chart');
-            chartYearInput.datepicker({
-                format: "yyyy",
-                startView: 2,
-                minViewMode: 2,
-                todayBtn: "linked",
-                autoclose: true,
-                todayHighlight: true,
-            }).datepicker('setDate', 'today')
-              .on('change', () => {
-                    updateChart(chart1, chart1Api + chartYearInput.val());
-                    updateChart(chart2, chart2Api + chartYearInput.val())
-                });
-
-            // Initiate Chart1
-            @if (app()->getLocale() === 'ar')
-                const months = moment().locale('ar').localeData().months();
-            @else
-                const months = moment.months();
-            @endif
-
-
-            const chart1 = new Chart(document.getElementById("chart-1"),
-                {
-                    "type": "line",
-                    "data":
-                        {
-                            "labels": months,
-                            "datasets":
-                                [
-                                    {
-                                        "label": "@lang('Total per each month')",
-                                        "data": [],
-                                        "fill": true,
-                                        "borderColor": "rgb(75, 192, 192)",
-                                        "lineTension": 0.3
-                                    }
-                                ]
-                        },
-                    "options": {}
-                }
-            );
-            const chart1Api = "@yield('chart1-api')/";
-            updateChart(chart1, chart1Api + chartYearInput.val());
-
-            // Initiate Chart2
-            const chart2 = new Chart(document.getElementById("chart-2"),
-                {
-                    "type": "pie",
-                    "data": {
-                        "labels": ["@lang('Males')", "@lang('Females')"],
-                        "datasets": [
-                            {
-                                "label": "@lang('Total of males and females')",
-                                "data": [],
-                                "backgroundColor": ["rgb(54, 162, 235)", "rgb(255, 99, 132)"]
-                            }
-                        ]
-                    }
-                }
-            );
-            const chart2Api = "@yield('chart2-api')/";
-            updateChart(chart2, chart2Api + chartYearInput.val());
-        // -- End Chart --
         });
     </script>
 @endsection

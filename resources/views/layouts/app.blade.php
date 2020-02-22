@@ -19,7 +19,7 @@
     <!-- Styles -->
     @yield('css')
 </head>
-<body class="@yield('body-class', 'skin-default fixed-layout mini-sidebar')">
+<body class="@yield('body-class', 'skin-default fixed-layout')">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -134,8 +134,8 @@
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-chart-bar"></i><span class="hide-menu">@lang('Charts')</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">@lang('Governorates')</a></li>
-                                <li><a href="#">@lang('Nationalities')</a></li>
+                                <li><a href="{{ route('charts.governorates') }}">@lang('Governorates')</a></li>
+                                <li><a href="{{ route('charts.countries') }}">@lang('Nationalities')</a></li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-login"></i><span class="hide-menu">@lang('Import')</span></a>

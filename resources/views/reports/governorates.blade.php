@@ -28,11 +28,3 @@
 
 @section('api-url', route('getAllGovernoratesReports'))
 {{-- End table --}}
-
-{{-- Start charts --}}
-{{-- First chart api --}}
-@section('chart1-api', route('getTotalsForGovernoratesPerEachMonth', ''))
-{{-- Second chart api --}}
-@section('chart2-api', route('getTotalGovernoratesMalesFemales', ''))
-{{-- End charts --}}
-

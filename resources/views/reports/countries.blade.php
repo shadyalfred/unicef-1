@@ -28,10 +28,3 @@
 
 @section('table-col', "country")
 {{-- End table --}}
-
-{{-- Start charts --}}
-{{-- First chart api --}}
-@section('chart1-api', route('getTotalsForNationalitiesPerEachMonth', ''))
-{{-- Second chart api --}}
-@section('chart2-api', route('getTotalNationalitiesMalesFemales', ''))
-{{-- End charts --}}

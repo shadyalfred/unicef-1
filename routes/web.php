@@ -54,4 +54,15 @@ Route::middleware('auth')->group(function () {
     Route::get('reports/countries', function () {
         return view('reports.countries');
     })->name('reports.countries');
+
+    // Charts
+    Route::prefix('charts')->group(function () {
+        Route::get('governorates', function () {
+            return view('charts.governorates');
+        })->name('charts.governorates');
+
+        Route::get('countries', function () {
+            return view('charts.countries');
+        })->name('charts.countries');
+    });
 });
