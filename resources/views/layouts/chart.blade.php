@@ -62,6 +62,18 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @yield('chart-3-title')
+                    </h4>
+                    <div id="chart-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('javascript')
@@ -93,6 +105,7 @@
             yearInput.on('changeDate', () => {
                 updateChart1();
                 updateChart2();
+                updateChart3();
             });
         });
     </script>
@@ -101,6 +114,7 @@
     <script type="text/javascript">
         const api1 = "@yield('api1')/"
         const api2 = "@yield('api2')/";
+        const api3 = "@yield('api3')/"
 
         @if (app()->getLocale() === 'ar')
             const months = moment().locale('ar').localeData().months();
@@ -135,12 +149,20 @@
                     ]);
                 });
         }
+
+        function updateChart3() {
+            fetch(api3 + yearInput.val(), {headers: {"Content-Language": "{{ app()->getLocale() }}"}})
+                .then((response) => response.json())
+                .then((data) => chart3.setData(data));
+        }
     </script>
 
     {{-- Initiate charts --}}
     <script type="text/javascript">
         let chart1;
         let chart2;
+        let chart3;
+
         $(document).ready(() => {
             chart1 = Morris.Bar(
                 {
@@ -148,7 +170,7 @@
                     data: [{month: "", total: 0}],
                     xkey: 'month',
                     ykeys: ['total'],
-                    labels: ['Total'],
+                    labels: ["@lang('Total')"],
                     barColors: ['#55ce63'],
                     hideHover: 'auto',
                     gridLineColor: '#eef0f2',
@@ -163,9 +185,23 @@
                     colors: ['#40c4ff', '#ff8398']
                 }
             );
+            chart3 = Morris.Bar(
+                {
+                    element: 'chart-3',
+                    data: [{governorate: null, total: null, males: null, females: null}],
+                    xkey: "@yield('chart-3-xkey')",
+                    ykeys: ['total', 'males', 'females'],
+                    labels: ["@lang('Total')", "@lang('Males')", "@lang('Females')"],
+                    barColors: ['#55ce63', '#40c4ff', '#ff8398'],
+                    hideHover: 'auto',
+                    gridLineColor: '#eef0f2',
+                    resize: true
+                }
+            );
 
             updateChart1();
             updateChart2();
+            updateChart3();
         });
     </script>
 @endsection

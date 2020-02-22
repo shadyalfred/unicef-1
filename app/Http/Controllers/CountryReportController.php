@@ -54,6 +54,43 @@ class CountryReportController extends Controller
     }
 
     /**
+     * Returns an array of the total, and total males,
+     * and females for each nationality in a givern year.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getTotalsForEach($year)
+    {
+        if (request()->header('Content-Language') === 'ar') {
+            $country = 'country_ar';
+        } else {
+            $country = 'country_en';
+        }
+
+        $totals = DB::table('country_reports')
+                        ->whereYear('date', '=', $year)
+                        ->orderBy('country_id')
+                        ->leftJoin('countries', 'countries.id', '=', 'country_reports.country_id')
+                        ->select(
+                            DB::raw("$country AS country"),
+                            DB::raw("SUM(
+                                        males_above_15_visits + males_under_5 + males_from_5_to_15 +
+                                        pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15
+                                    ) AS 'total'"),
+                            DB::raw("SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                     AS 'males'"),
+                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                     AS 'females'")
+                            )
+                        ->groupBy(['country_en', 'country_ar'])
+                        ->get();
+
+        return $totals;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Governorate;
 use App\GovernorateReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +58,43 @@ class GovernorateReportController extends Controller
                         ->get();
 
         return response()->json([$totals[0]->males, $totals[0]->females]);
+    }
+
+    /**
+     * Returns an array of the total, and total males,
+     * and females for each governorate in a givern year.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getTotalsForEach($year)
+    {
+        if (request()->header('Content-Language') === 'ar') {
+            $governorate = 'name_ar';
+        } else {
+            $governorate = 'name_en';
+        }
+
+        $totals = DB::table('governorate_reports')
+                        ->whereYear('date', '=', $year)
+                        ->orderBy('governorate_id')
+                        ->leftJoin('governorates', 'governorates.id', '=', 'governorate_reports.governorate_id')
+                        ->select(
+                            DB::raw("$governorate AS governorate"),
+                            DB::raw("SUM(
+                                        males_above_15_visits + males_under_5 + males_from_5_to_15 +
+                                        pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15
+                                    ) AS 'total'"),
+                            DB::raw("SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                     AS 'males'"),
+                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                     AS 'females'")
+                            )
+                        ->groupBy(['name_en', 'name_ar'])
+                        ->get();
+
+        return $totals;
     }
 
     /**
