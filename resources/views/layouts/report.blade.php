@@ -138,6 +138,8 @@
 @section('javascript')
     @parent
 
+    {{-- Wait for element --}}
+    <script type="text/javascript" src="{{ asset('assets/node_modules/waitForElement.js') }}"></script>
     {{-- Datepicker --}}
     <script type="text/javascript" src="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <!-- This is data table -->
@@ -303,7 +305,9 @@
 
                 // Importing range_dates.js to sort table by date input
                 endDate.ready(() => {
-                    $.getScript("{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}");
+                    waitForElement('#ffin').then(() => {
+                        $.getScript("{{ asset('assets/node_modules/datatables.net_plugins/range_dates.js') }}");
+                    });
                 });
             }).ready(() => table.draw());
 
