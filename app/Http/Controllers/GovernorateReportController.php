@@ -121,7 +121,7 @@ class GovernorateReportController extends Controller
                                         males_above_15_visits + males_under_5 + males_from_5_to_15 +
                                         pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15
-                                    ) AS 'total'"),
+                                    ) AS 'total'")
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar'])
                         ->orderByDesc('total')
