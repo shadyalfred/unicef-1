@@ -2,10 +2,10 @@
 
 @section('css')
     {{-- Datepicker --}}
-    <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 
     {{-- Morris CSS --}}
-    <link href="{{ asset('assets/node_modules/morrisjs/morris.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/node_modules/morrisjs/morris.css') }}" rel="stylesheet">
 
     <style>
         #year-input:hover {
@@ -18,7 +18,7 @@
     {{-- Start charts --}}
     {{-- Select year --}}
     <div class="row">
-        <div class="col-2 mx-auto text-center">
+        <div class="col-lg-2 mx-auto text-center">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">

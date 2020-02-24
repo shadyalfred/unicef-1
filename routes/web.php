@@ -65,4 +65,9 @@ Route::middleware('auth')->group(function () {
             return view('charts.countries');
         })->name('charts.countries');
     });
+
+    // Map
+    Route::get('map', function () {
+        return view('map');
+    })->name('map');
 });

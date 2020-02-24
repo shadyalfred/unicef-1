@@ -14,7 +14,7 @@
     <title>@yield('title', 'UNICEF Egypt')</title>
 
     {{-- Custom CSS --}}
-    <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/dist/css/style.min.css') }}" type="text/css" rel="stylesheet">
 
     <!-- Styles -->
     @yield('css')
@@ -144,6 +144,7 @@
                                 <li><a href="{{ route('import.country.form') }}">@lang('Nationalities')</a></li>
                             </ul>
                         </li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('map') }}" aria-expanded="false"><i class="ti-map-alt"></i><span class="hide-menu">@lang('Map')</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -211,21 +212,21 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="{{ asset('assets/node_modules/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/jquery/jquery-3.2.1.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('assets/node_modules/popper/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/popper/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('assets/dist/js/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/dist/js/perfect-scrollbar.jquery.min.js') }}"></script>
     <!--Wave Effects -->
-    <script src="{{ asset('assets/dist/js/waves.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/dist/js/waves.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
     <!--stickey kit -->
-    <script src="{{ asset('assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/sparkline/jquery.sparkline.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/sparkline/jquery.sparkline.min.js') }}"></script>
     <!--Custom JavaScript -->
-    <script src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
     @yield('javascript')
 </body>
 </html>
