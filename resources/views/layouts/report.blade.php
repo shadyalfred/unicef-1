@@ -269,14 +269,12 @@
                 
             // Create datepickers inputs
             $('#reports-table_filter').ready(function () {
-                $('#date-range-inputs').appendTo('#reports-table_filter').ready(() => {
-                    $('.dataTables_filter').css({'text-align': 'none'});
-                    $('.dataTables_filter').css({'float': 'none'});
-                    @if(app()->getLocale() === 'ar')
-                        $('#ffin').prev().css({'margin-right': 0});
-                    @endif
-                });
-
+                $('.dataTables_filter').css({'text-align': 'none'});
+                $('.dataTables_filter').css({'float': 'none'});
+                @if(app()->getLocale() === 'ar')
+                    $('#ffin').prev().css({'margin-right': 0});
+                @endif
+                $('#date-range-inputs').appendTo('#reports-table_filter');
 
                 // Initiating datepicker
                 const startDate = $('#fini');
