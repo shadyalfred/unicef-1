@@ -61,6 +61,18 @@
                     </div>
 
                     <div class="table-responsive m-t-40">
+                        {{-- Date Range Inputs --}}
+                        <div id="date-range-inputs" style="float: left">
+                            <div>
+                                <label for="fini">@lang('From:')</label>
+                                <input type="text" id="fini">
+                            </div>
+                            <div>
+                                <label for="ffin" style="margin-right: 19px">@lang('To:')</label>
+                                <input type="text" id="ffin">
+                            </div>
+                        </div>
+
                         <table id="reports-table"
                             class="display nowrap table table-hover table-striped table-bordered"
                             cellspacing="0" width="100%">
@@ -257,26 +269,14 @@
                 
             // Create datepickers inputs
             $('#reports-table_filter').ready(function () {
-                $('#reports-table_filter').append(`
-                    <div style="float: left">
-                        <div>
-                            <label for="fini">@lang('From:')</label>
-                            <input type="text" id="fini">
-                        </div>
-                        <div>
-                            <label for="ffin" style="margin-right: 19px">@lang('To:')</label>
-                            <input type="text" id="ffin">
-                        </div>
-                    </div>
-                `);
+                $('#date-range-inputs').appendTo('#reports-table_filter').ready(() => {
+                    $('.dataTables_filter').css({'text-align': 'none'});
+                    $('.dataTables_filter').css({'float': 'none'});
+                    @if(app()->getLocale() === 'ar')
+                        $('#ffin').prev().css({'margin-right': 0});
+                    @endif
+                });
 
-                $('.dataTables_filter').css({'text-align': 'none'});
-
-                $('.dataTables_filter').css({'float': 'none'});
-
-                @if(app()->getLocale() === 'ar')
-                    $('#ffin').prev().css({'margin-right': 0});
-                @endif
 
                 // Initiating datepicker
                 const startDate = $('#fini');
