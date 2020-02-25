@@ -83,7 +83,16 @@
     <script type="text/javascript">
         const api = "{{ route('map-api', '') }}/";
 
+        function clearMap() {
+            governorateKey.forEach((governorate) => {
+                delete simplemaps_countrymap.mapdata.state_specific[governorate].color;
+                simplemaps_countrymap.mapdata.state_specific[governorate].description = "";
+            });
+        }
+
         function updateMap() {
+            clearMap();
+
             fetch(api + yearInput.val(), {headers: {"Content-Language": "{{ app()->getLocale() }}"}})
                 .then((response) => response.json())
                 .then((resJson) => {
