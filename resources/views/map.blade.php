@@ -26,7 +26,7 @@
                         @lang('Select year')
                     </h4>
                     <div>
-                        <input type="text" id="year-input"
+                        <input type="text" id="year-input" readonly
                             style="display: inline-block; width: 50px; border: none;
                                    border-bottom: 1px solid; text-align: center">
                     </div>
@@ -57,7 +57,7 @@
     {{-- States keys --}}
     <script type="text/javascript">
         // usage: governorateKey[governorate_id - 1]
-        const governorateKey = [ 
+        const governorateKey = [
             'EGY1533',
             'EGY1543',
             'EGY1538',

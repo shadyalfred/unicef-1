@@ -57,11 +57,11 @@
                         <span style="margin-left: 13px;">
                             <!-- dark Logo text -->
                             <img src="{{ asset('assets/images/unicef_logo_text.png') }}" style="height: 40px" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo text -->    
+                            <!-- Light Logo text -->
                             <img src="{{ asset('assets/images/unicef_logo_text.png') }}" style="height: 40px" class="light-logo" alt="homepage" />
                         </span>
                         <!-- End Logo text -->
-                    </a> 
+                    </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -222,9 +222,6 @@
     <script type="text/javascript" src="{{ asset('assets/dist/js/waves.js') }}"></script>
     <!--Menu sidebar -->
     <script type="text/javascript" src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
-    <!--stickey kit -->
-    <script type="text/javascript" src="{{ asset('assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/node_modules/sparkline/jquery.sparkline.min.js') }}"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
     @yield('javascript')

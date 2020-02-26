@@ -15,7 +15,7 @@
             cursor: pointer;
         }
     </style>
-    
+
     {{-- Datatable RTL --}}
     @if(app()->getLocale() === 'ar')
         <style>
@@ -65,11 +65,11 @@
                         <div id="date-range-inputs" style="float: left">
                             <div>
                                 <label for="fini">@lang('From:')</label>
-                                <input type="text" id="fini">
+                                <input type="text" id="fini" readonly>
                             </div>
                             <div>
                                 <label for="ffin" style="margin-right: 19px">@lang('To:')</label>
-                                <input type="text" id="ffin">
+                                <input type="text" id="ffin" readonly>
                             </div>
                         </div>
 
@@ -164,7 +164,7 @@
     <script type="text/javascript" src="{{ asset('assets/node_modules/sheetjs/xlsx.full.min.js') }}"></script>
     {{-- Charts --}}
     <script src="{{ asset('assets/node_modules/Chart.js/Chart.min.js') }}"></script>
-    <!-- END - This is for export functionality only --> 
+    <!-- END - This is for export functionality only -->
 
     {{-- Declare function --}}
     <script type="text/javascript">
@@ -213,7 +213,7 @@
                 let elementCopy = table.rows({page: 'current'}).nodes()[index].cloneNode(true);
                 customTable.getElementsByTagName('tbody')[0].appendChild(elementCopy);
             }
-            
+
             return customTable;
         }
     </script>
@@ -266,11 +266,10 @@
                     fixedColumns: true // Use for RTL
                 @endif
             });
-                
+
             // Create datepickers inputs
             $('#reports-table_filter').ready(function () {
-                $('.dataTables_filter').css({'text-align': 'none'});
-                $('.dataTables_filter').css({'float': 'none'});
+                $('.dataTables_filter').css({'text-align': 'none', 'float': 'none'});
                 @if(app()->getLocale() === 'ar')
                     $('#ffin').prev().css({'margin-right': 0});
                 @endif

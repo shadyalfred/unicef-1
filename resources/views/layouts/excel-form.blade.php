@@ -60,7 +60,6 @@
     <script src="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <script>
         const datePicker = $('#date-picker');
-        
         datePicker.datepicker({
             format: "mm/yyyy",
             startView: 1,

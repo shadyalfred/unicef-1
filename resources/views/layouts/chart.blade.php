@@ -25,11 +25,12 @@
                         @lang('Select year')
                     </h4>
                     <div>
-                        <input type="text" id="year-input" style="display: inline-block;
-                                                                            width: 50px;
-                                                                            border: none;
-                                                                            border-bottom: 1px solid;
-                                                                            text-align: center">
+                        <input type="text" id="year-input" readonly
+                            style="display: inline-block;
+                                    width: 50px;
+                                    border: none;
+                                    border-bottom: 1px solid;
+                                    text-align: center">
                     </div>
                 </div>
             </div>
@@ -131,7 +132,7 @@
                     for (let i = 0; i < totals.length; i++) {
                         const total = totals[i];
                         const month = months[i];
-                        
+
                         data.push({month: month, total: total})
                     }
 
