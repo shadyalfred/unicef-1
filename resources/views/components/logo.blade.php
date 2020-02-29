@@ -1,0 +1,1 @@
+<a href="{{ route('index') }}" class="db"><img src="{{ asset('assets/images/unicef_logo.png') }}" style="max-width: 100px" alt="Home" /></a>

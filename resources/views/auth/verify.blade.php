@@ -5,7 +5,7 @@
 
     @csrf
 
-    <a href="{{ route('index') }}" class="db"><img src="{{ asset('assets/images/unicef_logo.png') }}" style="max-width: 100px" alt="Home" /></a>
+    @component('components.logo')@endcomponent
 
     <div class="form-group text-center m-t-20">
         <div>

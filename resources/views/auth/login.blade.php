@@ -4,7 +4,7 @@
 <form class="form-horizontal form-material text-center" id="loginform" method="POST" action="{{ route('login') }}">
     @csrf
 
-    <a href="{{ route('index') }}" class="db"><img src="{{ asset('assets/images/unicef_logo.png') }}" style="max-width: 100px" alt="Home" /></a>
+    @component('components.logo')@endcomponent
 
     <div class="form-group m-t-40">
         <div class="col-xs-12">

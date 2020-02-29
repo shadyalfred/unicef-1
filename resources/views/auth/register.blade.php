@@ -5,7 +5,7 @@
     @csrf
 
     <div class="text-center">
-        <a href="{{ route('index') }}" class="db"><img src="{{ asset('assets/images/unicef_logo.png') }}" style="max-width: 100px" alt="Home" /></a>
+        @component('components.logo')@endcomponent
     </div>
     <h3 class="box-title m-t-40 m-b-0">@lang('register.registerNow')</h3><small>@lang('register.createYourAccount')</small>
 
