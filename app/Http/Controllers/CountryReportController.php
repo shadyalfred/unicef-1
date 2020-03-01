@@ -69,22 +69,26 @@ class CountryReportController extends Controller
 
         $totals = DB::table('country_reports')
                         ->whereYear('date', '=', $year)
-                        ->orderBy('country_id')
                         ->leftJoin('countries', 'countries.id', '=', 'country_reports.country_id')
                         ->select(
                             DB::raw("$country AS country"),
-                            DB::raw("SUM(
-                                        males_above_15_visits + males_under_5 + males_from_5_to_15 +
-                                        pregnancy_visits + endangered_pregnancies +
-                                        other_visits + females_under_5 + females_from_5_to_15
-                                    ) AS 'total'"),
-                            DB::raw("SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
-                                     AS 'males'"),
-                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15 +
+                                        pregnancy_visits + endangered_pregnancies + other_visits + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                    AS 'total'"),
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                        AS INTEGER)
+                                    AS 'males'"),
+                            DB::raw("CAST(
+                                        SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                     AS 'females'")
+                                        AS INTEGER)
+                                    AS 'females'")
                             )
                         ->groupBy(['country_id', 'country_en', 'country_ar'])
+                        ->orderByDesc('total')
                         ->get();
 
         return $totals;
