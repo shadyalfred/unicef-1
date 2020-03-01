@@ -27,14 +27,16 @@ class SyriansReportController extends Controller
                         ->leftJoin('governorates', 'governorates.id', '=', 'syrians_reports.governorate_id')
                         ->select(
                             DB::raw("$governorate AS name"),
-                            DB::raw("SUM(
-                                        males_above_15_visits + males_under_5 + males_from_5_to_15 +
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15 +
                                         pregnancy_visits + endangered_pregnancies +
-                                        other_visits + females_under_5 + females_from_5_to_15
-                                    ) AS 'total'"),
-                            DB::raw("SUM(
-                                        males_under_5 + males_from_5_to_15 + females_under_5 + females_from_5_to_15
-                                    ) AS 'total_kids'"),
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                    AS 'total'"),
+                            DB::raw("CAST(
+                                        SUM(males_under_5 + males_from_5_to_15 + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                    AS 'total_kids'"),
                             'map_key'
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar', 'map_key'])

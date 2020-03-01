@@ -66,7 +66,7 @@
         @endif
 
         function clearMap() {
-            Object.keys( simplemaps_countrymap.mapdata.state_specific).forEach((governorateKey) => {
+            Object.keys(simplemaps_countrymap.mapdata.state_specific).forEach((governorateKey) => {
                 delete simplemaps_countrymap.mapdata.state_specific[governorateKey].color;
                 simplemaps_countrymap.mapdata.state_specific[governorateKey].description = "";
             });
@@ -84,8 +84,8 @@
                         state.name = "<h3>" + governorate.name + "</h3>";
                         if (governorate.total && governorate.total_kids) {
                             state.description = `
-                                <h6>@lang('Total:') ${Number(governorate.total).toLocaleString(locale)}</h6>
-                                <h6>@lang('Beneficiaries:') ${Number(governorate.total_kids).toLocaleString(locale)}</h6>
+                                <h6>@lang('Total:') ${governorate.total.toLocaleString(locale)}</h6>
+                                <h6>@lang('Beneficiaries:') ${governorate.total_kids.toLocaleString(locale)}</h6>
                             `;
                         }
                     });

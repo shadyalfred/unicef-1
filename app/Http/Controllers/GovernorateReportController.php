@@ -22,9 +22,11 @@ class GovernorateReportController extends Controller
                         ->whereYear('date', '=', $year)
                         ->orderBy('date')
                         ->select(
-                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
+                            DB::raw("CAST(
+                                        SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + males_under_5 + males_from_5_to_15 +
                                         females_under_5 + females_from_5_to_15 + males_above_15_visits)
+                                        AS INTEGER)
                                      AS total"),
                             DB::raw("DATE_FORMAT(date, '%m') AS month")
                             )
@@ -49,10 +51,14 @@ class GovernorateReportController extends Controller
         $totals = DB::table('governorate_reports')
                         ->whereYear('date', '=', $year)
                         ->select(
-                            DB::raw("SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                        AS INTEGER)
                                      AS males"),
-                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
+                            DB::raw("CAST(
+                                        SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
                                      AS females")
                             )
                         ->get();
@@ -76,22 +82,27 @@ class GovernorateReportController extends Controller
 
         $totals = DB::table('governorate_reports')
                         ->whereYear('date', '=', $year)
-                        ->orderBy('governorate_id')
                         ->leftJoin('governorates', 'governorates.id', '=', 'governorate_reports.governorate_id')
                         ->select(
                             DB::raw("$governorate AS governorate"),
-                            DB::raw("SUM(
-                                        males_above_15_visits + males_under_5 + males_from_5_to_15 +
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15 +
                                         pregnancy_visits + endangered_pregnancies +
-                                        other_visits + females_under_5 + females_from_5_to_15
-                                    ) AS 'total'"),
-                            DB::raw("SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
-                                     AS 'males'"),
-                            DB::raw("SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
+                                    AS INTEGER
+                                    ) AS 'total'"),
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                        AS INTEGER)
+                                     AS 'males'"),
+                            DB::raw("CAST(
+                                        SUM(pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
                                      AS 'females'")
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar'])
+                        ->orderByDesc('total')
                         ->get();
 
         return $totals;
@@ -116,14 +127,16 @@ class GovernorateReportController extends Controller
                         ->leftJoin('governorates', 'governorates.id', '=', 'governorate_reports.governorate_id')
                         ->select(
                             DB::raw("$governorate AS name"),
-                            DB::raw("SUM(
-                                        males_above_15_visits + males_under_5 + males_from_5_to_15 +
-                                        pregnancy_visits + endangered_pregnancies +
-                                        other_visits + females_under_5 + females_from_5_to_15
-                                    ) AS 'total'"),
-                            DB::raw("SUM(
-                                        males_under_5 + males_from_5_to_15 + females_under_5 + females_from_5_to_15
-                                    ) AS 'total_kids'"),
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15
+                                        + pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                    AS 'total'"),
+                            DB::raw("CAST(
+                                        SUM(males_under_5 + males_from_5_to_15 + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                    AS 'total_kids'"),
                             'map_key'
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar', 'map_key'])
