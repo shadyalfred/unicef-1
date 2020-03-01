@@ -115,16 +115,18 @@ class GovernorateReportController extends Controller
                         ->whereYear('date', '=', $year)
                         ->leftJoin('governorates', 'governorates.id', '=', 'governorate_reports.governorate_id')
                         ->select(
-                            'governorate_id AS id',
                             DB::raw("$governorate AS name"),
                             DB::raw("SUM(
                                         males_above_15_visits + males_under_5 + males_from_5_to_15 +
                                         pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15
-                                    ) AS 'total'")
+                                    ) AS 'total'"),
+                            DB::raw("SUM(
+                                        males_under_5 + males_from_5_to_15 + females_under_5 + females_from_5_to_15
+                                    ) AS 'total_kids'"),
+                            'map_key'
                             )
-                        ->groupBy(['governorate_id', 'name_en', 'name_ar'])
-                        ->orderByDesc('total')
+                        ->groupBy(['governorate_id', 'name_en', 'name_ar', 'map_key'])
                         ->get();
 
         return $totals;

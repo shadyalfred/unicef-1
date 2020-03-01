@@ -15,8 +15,11 @@ class CreategovernoratesTable extends Migration
     {
         Schema::create('governorates', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->string('name_ar', 64)->unique();
             $table->string('name_en', 64)->unique();
+
+            $table->string('map_key', 7);
         });
 
         // Inserting governorates into the table

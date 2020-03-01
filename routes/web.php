@@ -70,8 +70,11 @@ Route::middleware('auth')->group(function () {
         })->name('charts.countries');
     });
 
-    // Map
-    Route::get('map', function () {
-        return view('map');
-    })->name('map');
+    // Maps
+    Route::get('map/syrians', function () {
+        return view('maps.syrians');
+    })->name('map.syrians');
+    Route::get('map/all-nationalities', function () {
+        return view('maps.all-nationalities');
+    })->name('map.allNationalities');
 });

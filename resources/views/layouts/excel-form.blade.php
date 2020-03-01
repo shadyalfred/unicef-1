@@ -6,6 +6,11 @@
     <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
 
+{{-- Breadcrumb --}}
+@section('additional-breadcrumb')
+    <li class="breadcrumb-item"><a href="#">@lang('Import')</a></li>
+@endsection
+
 @section('page-title', __('Upload Spreadsheet'))
 
 @section('form-content')

@@ -31,10 +31,8 @@
 
 {{-- Breadcrumb --}}
 @section('additional-breadcrumb')
-    <li class="breadcrumb-item"><a href="#">Reports</a></li>
+    <li class="breadcrumb-item"><a href="#">@lang('Reports')</a></li>
 @endsection
-
-@section('page-title', __('Report'))
 
 @section('content')
     <!-- ============================================================== -->

@@ -1,7 +1,10 @@
 @extends('layouts.report')
 
+{{-- Page Title --}}
+@section('page-title', __('Governorates Report'))
+
 {{-- Page breadcrumb title --}}
-@section('page-title-breadcrumb', __('Governorates records'))
+@section('page-title-breadcrumb', __('Governorates Report'))
 
 {{-- Table --}}
 {{-- Table title --}}
@@ -11,7 +14,7 @@
 
 {{-- Table subtitle --}}
 @section('report-page-subtitle')
-    @lang('Monthly records for each governorate')
+    @lang('Monthly Records for each governorate')
 @endsection
 
 {{-- Table header --}}

@@ -14,6 +14,11 @@
     </style>
 @endsection
 
+{{-- Breadcrumb --}}
+@section('additional-breadcrumb')
+    <li class="breadcrumb-item"><a href="#">@lang('Charts')</a></li>
+@endsection
+
 @section('content')
     {{-- Start charts --}}
     {{-- Select year --}}

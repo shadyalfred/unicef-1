@@ -59,6 +59,12 @@ Route::prefix('get-totals-for-each-nationality')->group(function () {
     Route::get('{year}', 'CountryReportController@getTotalsForEach')
         ->name('getTotalsForNationality');
 });
+// End Charts
+
+// Maps
+Route::get('syrians-map/{year}', 'SyriansReportController@map')
+    ->name('syriansMapApi');
 
 Route::get('governorates-map/{year}', 'GovernorateReportController@map')
-    ->name('map-api');
+    ->name('allNationalitiesMapApi');
+// End Maps

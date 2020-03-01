@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('page-title', __('Map'))
-
-@section('page-title-breadcrumb', __('Map'))
 
 @section('css')
     {{-- Datepicker --}}
@@ -14,6 +11,11 @@
         }
     </style>
 
+@endsection
+
+{{-- Breadcrumb --}}
+@section('additional-breadcrumb')
+    <li class="breadcrumb-item"><a href="#">@lang('Maps')</a></li>
 @endsection
 
 @section('content')
@@ -54,39 +56,19 @@
     <script type="text/javascript" src="{{ asset('assets/node_modules/waitForElement.js') }}"></script>
     {{-- Import rgb_heat_map --}}
     <script type="text/javascript" src="{{ asset('assets/node_modules/rgb_heat_map.min.js') }}"></script>
-    {{-- States keys --}}
-    <script type="text/javascript">
-        // usage: governorateKey[governorate_id - 1]
-        const governorateKey = [
-            'EGY1533',
-            'EGY1543',
-            'EGY1538',
-            'EGY1531',
-            'EGY1539',
-            'EGY1537',
-            'EGY1535',
-            'EGY1534',
-            'EGY1547',
-            'EGY1530',
-            'EGY1532',
-            'EGY1541',
-            'EGY1544',
-            'EGY1542',
-            'EGY1545',
-            'EGY1549',
-            'EGY1548',
-            'EGY1540',
-            'EGY1556'
-        ];
-    </script>
     {{-- Map helper function --}}
     <script type="text/javascript">
-        const api = "{{ route('map-api', '') }}/";
+        const api = "@yield('map-api')/";
+        @if (app()->getLocale() === 'ar')
+            const locale = 'ar-EG';
+        @else
+            const locale = 'en-US'
+        @endif
 
         function clearMap() {
-            governorateKey.forEach((governorate) => {
-                delete simplemaps_countrymap.mapdata.state_specific[governorate].color;
-                simplemaps_countrymap.mapdata.state_specific[governorate].description = "";
+            Object.keys( simplemaps_countrymap.mapdata.state_specific).forEach((governorateKey) => {
+                delete simplemaps_countrymap.mapdata.state_specific[governorateKey].color;
+                simplemaps_countrymap.mapdata.state_specific[governorateKey].description = "";
             });
         }
 
@@ -97,10 +79,15 @@
                 .then((response) => response.json())
                 .then((resJson) => {
                     resJson.forEach((governorate) => {
-                        const state = simplemaps_countrymap.mapdata.state_specific[governorateKey[governorate.id - 1]];
+                        const state = simplemaps_countrymap.mapdata.state_specific[governorate.map_key];
                         state.color = rgbHeatMapValue(governorate.total, resJson[0].total);
                         state.name = "<h3>" + governorate.name + "</h3>";
-                        state.description = "<h6>" + "@lang('Total:') " + governorate.total + "</h6>";
+                        if (governorate.total && governorate.total_kids) {
+                            state.description = `
+                                <h6>@lang('Total:') ${Number(governorate.total).toLocaleString(locale)}</h6>
+                                <h6>@lang('Beneficiaries:') ${Number(governorate.total_kids).toLocaleString(locale)}</h6>
+                            `;
+                        }
                     });
                 })
                 .then(() => simplemaps_countrymap.load());

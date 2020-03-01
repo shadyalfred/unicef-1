@@ -1,7 +1,10 @@
 @extends('layouts.report')
 
-{{-- Page title --}}
-@section('page-title-breadcrumb', __('Nationalities records'))
+{{-- Page Title --}}
+@section('page-title', __('Nationalities Report'))
+
+{{-- Page breadcrumb title --}}
+@section('page-title-breadcrumb', __('Nationalities Report'))
 
 {{-- Table --}}
 {{-- Table title --}}
@@ -11,7 +14,7 @@
 
 {{-- Table subtitle --}}
 @section('report-page-subtitle')
-    @lang('Monthly records for each nationality')
+    @lang('Monthly Records for each nationality')
 @endsection
 
 {{-- Table header --}}

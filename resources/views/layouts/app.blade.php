@@ -145,7 +145,12 @@
                                 <li><a href="{{ route('import.country.form') }}">@lang('Nationalities')</a></li>
                             </ul>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('map') }}" aria-expanded="false"><i class="ti-map-alt"></i><span class="hide-menu">@lang('Map')</span></a></li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-map-alt"></i><span class="hide-menu">@lang('Maps')</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('map.syrians') }}">@lang('Syrians')</a></li>
+                                <li><a href="{{ route('map.allNationalities') }}">@lang('All Nationalities')</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
