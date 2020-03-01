@@ -18,9 +18,9 @@
             </div>
         @endif
 
-        <p>
+        <div class="alert alert-warning">
             {{ __('Before proceeding, please check your email for a verification link.') }}
-        </p>
+        </div>
     </div>
 
     <div class="form-group text-center m-t-20">
