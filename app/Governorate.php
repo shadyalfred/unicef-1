@@ -13,4 +13,12 @@ class Governorate extends Model
     {
         return $this->hasMany('App\GovernorateReport');
     }
+
+    /**
+     * Get the Syrians reports for the governorate.
+     */
+    public function syriansReports()
+    {
+        return $this->hasMany('App\SyriansReport');
+    }
 }

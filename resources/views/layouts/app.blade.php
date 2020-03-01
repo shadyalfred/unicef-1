@@ -128,6 +128,7 @@
                     <ul id="sidebarnav">
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-bar-chart-alt"></i><span class="hide-menu">Reports</span></a>
                             <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('reports.syrians') }}">@lang('Syrians')</a></li>
                                 <li><a href="{{ route('reports.governorates') }}">@lang('Governorates')</a></li>
                                 <li><a href="{{ route('reports.countries') }}">@lang('Nationalities')</a></li>
                             </ul>
@@ -173,6 +174,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                                @yield('additional-breadcrumb')
                                 @if (Route::currentRouteName() !== 'home')
                                     <li class="breadcrumb-item active">@yield('page-title-breadcrumb')</li>
                                 @endif

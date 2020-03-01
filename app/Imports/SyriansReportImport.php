@@ -2,12 +2,30 @@
 
 namespace App\Imports;
 
-use App\GovernorateReport;
+use App\SyriansReport;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class GovernorateReportsImport implements ToModel, WithStartRow
+class SyriansReportImport implements ToModel, WithStartRow, WithMultipleSheets
 {
+    public function sheets(): array
+    {
+        return [
+            1 => new SyriansReportImport(),
+        ];
+    }
+
+    /**
+     * Returns the number of the first row from which importing is started.
+     *
+     * @return int
+     */
+    public function startRow(): int
+    {
+        return 9;
+    }
+
     /**
     * @param array $row
     *
@@ -17,7 +35,7 @@ class GovernorateReportsImport implements ToModel, WithStartRow
     {
         $governorate_id = \App\Governorate::where('name_ar', $row[1])->first()->id; // Get the foreign key for the governorate
 
-        return new GovernorateReport([
+        return new SyriansReport([
             'governorate_id' => $governorate_id, // Foreign key field
 
             // From excel
@@ -33,15 +51,5 @@ class GovernorateReportsImport implements ToModel, WithStartRow
             // From $request
             'date' => request()->date
         ]);
-    }
-
-    /**
-     * Returns the number of the first row from which importing is started.
-     *
-     * @return int
-     */
-    public function startRow(): int
-    {
-        return 7;
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
 use App\CountryReport;
+use App\SyriansReport;
 use App\GovernorateReport;
 use Illuminate\Http\Request;
 use App\Http\Resources\ReportCollection;
+use App\Http\Resources\SyriansReportCollection;
 use App\Http\Resources\CountriesReportsCollection;
 
 /*
@@ -22,6 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Table
+Route::get('reports-of-all-syrians', function () {
+    return new SyriansReportCollection(SyriansReport::all());
+})->name('getAllSyriansReports');
+
 Route::get('reports-of-all-governorates', function () {
     return new ReportCollection(GovernorateReport::all());
 })->name('getAllGovernoratesReports');

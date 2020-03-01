@@ -14,9 +14,9 @@ class GovernorateTableSeeder extends Seeder
     {
         $governorates_ar = [
             'القاهرة',
-            'الأسكندرية',
+            'الاسكندرية',
             'بورسعيد',
-            'الإسماعيلية',
+            'الاسماعيلية',
             'دمياط',
             'الدقهلية',
             'الشرقية',
@@ -28,10 +28,10 @@ class GovernorateTableSeeder extends Seeder
             'الجيزة',
             'الفيوم',
             'المنيا',
-            'أسيوط',
+            'اسيوط',
             'أسوان',
             'مطروح',
-            'البحر الاحمر',
+            'البحر الأحمر',
         ];
 
         $governorates_en = [
@@ -62,7 +62,6 @@ class GovernorateTableSeeder extends Seeder
                 'name_en' => $governorates_en[$i]
             ]);
         }
-
     }
 }
 

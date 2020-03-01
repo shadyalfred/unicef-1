@@ -19,6 +19,14 @@
         </div>
     @endif
 
+    @if ($errors->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $errors->first('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </div>
+    @endif
+
     <form id="spreadsheet-upload-form" action="@yield('form-action')" method="POST" enctype="multipart/form-data">
         @csrf
 

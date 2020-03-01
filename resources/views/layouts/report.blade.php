@@ -29,6 +29,11 @@
     <link href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
 
+{{-- Breadcrumb --}}
+@section('additional-breadcrumb')
+    <li class="breadcrumb-item"><a href="#">Reports</a></li>
+@endsection
+
 @section('page-title', __('Report'))
 
 @section('content')

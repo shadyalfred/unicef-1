@@ -37,7 +37,7 @@ Route::get('home', function () {
 })->middleware('auth')->name('home');
 
 Route::middleware('auth')->group(function () {
-    // Excel import test
+    // Excel import
         // Governorates
         Route::get('import/governorate', 'ExcelImportController@showGovernorateForm')->name('import.governorate.form');
         Route::post('import/governorate', 'ExcelImportController@importGovernorate')->name('import.governorate.import');
@@ -47,6 +47,10 @@ Route::middleware('auth')->group(function () {
         Route::post('import/country', 'ExcelImportController@importCountry')->name('import.country.import');
 
     // Reports Tables
+    Route::get('reports/syrians', function () {
+        return view('reports.syrians');
+    })->name('reports.syrians');
+
     Route::get('reports/governorates', function () {
         return view('reports.governorates');
     })->name('reports.governorates');

@@ -1,17 +1,17 @@
 @extends('layouts.report')
 
 {{-- Page breadcrumb title --}}
-@section('page-title-breadcrumb', __('Governorates records'))
+@section('page-title-breadcrumb', __('Syrians records'))
 
 {{-- Table --}}
 {{-- Table title --}}
 @section('report-page-title')
-    @lang('Monthly Records')
+    @lang('Monthly Records of Syrians')
 @endsection
 
 {{-- Table subtitle --}}
 @section('report-page-subtitle')
-    @lang('Monthly records for each governorate')
+    @lang('Monthly records of Syrians in Egypt')
 @endsection
 
 {{-- Table header --}}
@@ -26,5 +26,5 @@
 
 @section('table-col', "governorate")
 
-@section('api-url', route('getAllGovernoratesReports'))
+@section('api-url', route('getAllSyriansReports'))
 {{-- End table --}}
