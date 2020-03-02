@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Governorate extends Model
 {
+    protected $fillable = ['name_ar', 'name_en', 'map_key'];
+
+    /**
+     * Disable or enable timestamps of created_at & updated_at.
+     *
+     * @var array
+     */
+    public $timestamps = false;
+
     /**
      * Get the reports for the governorate.
      */

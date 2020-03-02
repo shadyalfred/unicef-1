@@ -152,6 +152,8 @@
                                 <li><a href="{{ route('map.allNationalities') }}">@lang('All Nationalities')</a></li>
                             </ul>
                         </li>
+
+                        <li> <a class="waves-effect waves-dark" href="{{ route('governorate.add.showForm') }}" aria-expanded="false"><i class="fas fa-plus-square"></i><span class="hide-menu">@lang('Add Governorate')</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

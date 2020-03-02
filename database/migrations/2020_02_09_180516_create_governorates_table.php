@@ -19,7 +19,7 @@ class CreategovernoratesTable extends Migration
             $table->string('name_ar', 64)->unique();
             $table->string('name_en', 64)->unique();
 
-            $table->string('map_key', 7);
+            $table->string('map_key', 7)->unique();
         });
 
         // Inserting governorates into the table

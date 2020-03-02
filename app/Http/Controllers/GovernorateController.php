@@ -24,7 +24,17 @@ class GovernorateController extends Controller
      */
     public function create()
     {
-        //
+        $mapKeys = [
+            ['EGY1536', 'Suez'],
+            ['EGY1546', 'Bani Suwayf'],
+            ['EGY1550', 'Al Wadi at Jadid'],
+            ['EGY1551', 'Qina'],
+            ['EGY1552', 'Suhaj'],
+            ['EGY1557', 'Janub Sina'],
+            ['EGY1558', 'Shamal Sina'],
+            ['EGY5494', 'Luxor'],
+        ];
+        return view('add.governorate')->with('mapKeys', $mapKeys);
     }
 
     /**
@@ -35,7 +45,15 @@ class GovernorateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name_en' => 'required|unique:governorates,name_en|max:64',
+            'name_ar' => 'required|unique:governorates,name_ar|max:64',
+            'map_key' => 'required|unique:governorates,map_key'
+        ]);
+
+        Governorate::create($validatedData);
+        
+        return redirect()->back()->withSuccess(__('Governorate added successfully!'));
     }
 
     /**
