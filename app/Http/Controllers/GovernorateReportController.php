@@ -26,16 +26,16 @@ class GovernorateReportController extends Controller
                                         SUM(males_above_15_visits + males_under_5 + males_from_5_to_15 +
                                         pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                    AS INTEGER
+                                    AS UNSIGNED
                                     ) AS 'total'"),
                             DB::raw("CAST(
                                         SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS 'males'"),
                             DB::raw("CAST(
                                         SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS 'females'")
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar'])
@@ -61,15 +61,15 @@ class GovernorateReportController extends Controller
                             DB::raw("CAST(
                                         SUM(males_under_5 + males_from_5_to_15 +
                                         females_under_5 + females_from_5_to_15)
-                                    AS INTEGER
+                                    AS UNSIGNED
                                     ) AS 'total'"),
                             DB::raw("CAST(
                                         SUM(males_under_5 + males_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS 'males'"),
                             DB::raw("CAST(
                                         SUM(females_under_5 + females_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS 'females'")
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar'])
@@ -96,7 +96,7 @@ class GovernorateReportController extends Controller
                                         SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + males_under_5 + males_from_5_to_15 +
                                         females_under_5 + females_from_5_to_15 + males_above_15_visits)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS total"),
                             DB::raw("DATE_FORMAT(date, '%m') AS month")
                             )
@@ -123,12 +123,12 @@ class GovernorateReportController extends Controller
                         ->select(
                             DB::raw("CAST(
                                         SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS males"),
                             DB::raw("CAST(
                                         SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS females")
                             )
                         ->get();
@@ -159,16 +159,16 @@ class GovernorateReportController extends Controller
                                         SUM(males_above_15_visits + males_under_5 + males_from_5_to_15 +
                                         pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                    AS INTEGER
+                                    AS UNSIGNED
                                     ) AS 'total'"),
                             DB::raw("CAST(
                                         SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS 'males'"),
                             DB::raw("CAST(
                                         SUM(pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                      AS 'females'")
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar'])
@@ -201,11 +201,11 @@ class GovernorateReportController extends Controller
                                         SUM(males_above_15_visits + males_under_5 + males_from_5_to_15
                                         + pregnancy_visits + endangered_pregnancies +
                                         other_visits + females_under_5 + females_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                     AS 'total'"),
                             DB::raw("CAST(
                                         SUM(males_under_5 + males_from_5_to_15 + females_under_5 + females_from_5_to_15)
-                                        AS INTEGER)
+                                        AS UNSIGNED)
                                     AS 'total_kids'"),
                             'map_key'
                             )
