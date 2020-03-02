@@ -18,13 +18,13 @@ class ExcelImportController extends Controller
 
     public function importGovernorate(Request $request)
     {
-        try {
+        // try {
             Excel::import(new GovernorateReportImport, $request->file('spreadsheet_file'));
             Excel::import(new SyriansReportImport, $request->file('spreadsheet_file'));
             return back()->withSuccess(__('File was imported successfully!'));
-        } catch (\Throwable $th) {
-            return back()->withErrors(['error' => __('Something went wrong, please make sure you chose the correct file.')]);
-        }
+        // } catch (\Throwable $th) {
+        //     return back()->withErrors(['error' => __('Something went wrong, please make sure you chose the correct file.')]);
+        // }
     }
 
     // Countries
