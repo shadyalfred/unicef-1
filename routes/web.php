@@ -36,14 +36,15 @@ Route::get('home', function () {
     return view('home');
 })->middleware('auth')->name('home');
 
-// Add new governorate
-Route::get('add/governorate', 'GovernorateController@create')
-    ->name('governorate.add.showForm');
-
-Route::post('add/governorate', 'GovernorateController@store')
-    ->name('governorate.add.submit');
 
 Route::middleware('auth')->group(function () {
+    // Add new governorate
+    Route::get('add/governorate', 'GovernorateController@create')
+        ->name('governorate.add.showForm');
+
+    Route::post('add/governorate', 'GovernorateController@store')
+        ->name('governorate.add.submit');
+
     // Excel import
         // Governorates
         Route::get('import/governorate', 'ExcelImportController@showGovernorateForm')->name('import.governorate.form');
