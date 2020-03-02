@@ -4,6 +4,13 @@
 
 @section('page-title-breadcrumb', __('Nationalities Chart'))
 
+{{-- Range Charts --}}
+@section('range-api-1', route('getTotalsForRangeNat', ['', '']))
+@section('range-chart-1-xkey', 'country')
+
+@section('range-api-2', route('getTotalKidsForRangeNat', ['', '']))
+
+{{-- Yearly Charts --}}
 @section('api1', route('getTotalsForNationalitiesPerEachMonth', ''))
 
 @section('api2', route('getTotalNationalitiesMalesFemales', ''))

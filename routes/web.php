@@ -61,6 +61,10 @@ Route::middleware('auth')->group(function () {
 
     // Charts
     Route::prefix('charts')->group(function () {
+        Route::get('syrians', function () {
+            return view('charts.syrians');
+        })->name('charts.syrians');
+        
         Route::get('governorates', function () {
             return view('charts.governorates');
         })->name('charts.governorates');

@@ -79,7 +79,8 @@
             minViewMode: 1,
             todayBtn: "linked",
             autoclose: true,
-            todayHighlight: true
+            todayHighlight: true,
+            disableTouchKeyboard: true
         });
 
         const date = new Date();

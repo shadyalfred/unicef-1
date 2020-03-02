@@ -8,6 +8,75 @@ use Illuminate\Support\Facades\DB;
 
 class CountryReportController extends Controller
 {
+    public function getTotalsForRange($from, $to)
+    {
+        if (request()->header('Content-Language') === 'ar') {
+            $country = 'country_ar';
+        } else {
+            $country = 'country_en';
+        }
+
+        $totals = DB::table('country_reports')
+                        ->whereBetween('date', [$from, $to])
+                        ->leftJoin('countries', 'countries.id', '=', 'country_reports.country_id')
+                        ->select(
+                            DB::raw("$country AS country"),
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15 +
+                                        pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                    AS INTEGER
+                                    ) AS 'total'"),
+                            DB::raw("CAST(
+                                        SUM(males_above_15_visits + males_under_5 + males_from_5_to_15)
+                                        AS INTEGER)
+                                     AS 'males'"),
+                            DB::raw("CAST(
+                                        SUM(pregnancy_visits + endangered_pregnancies +
+                                        other_visits + females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                     AS 'females'")
+                            )
+                        ->groupBy(['country_id', 'country_en', 'country_ar'])
+                        ->orderByDesc('total')
+                        ->get();
+
+        return $totals;
+    }
+
+    public function getTotalKidsForRange($from, $to)
+    {
+        if (request()->header('Content-Language') === 'ar') {
+            $country = 'country_ar';
+        } else {
+            $country = 'country_en';
+        }
+
+        $totals = DB::table('country_reports')
+                        ->whereBetween('date', [$from, $to])
+                        ->leftJoin('countries', 'countries.id', '=', 'country_reports.country_id')
+                        ->select(
+                            DB::raw("$country AS country"),
+                            DB::raw("CAST(
+                                        SUM(males_under_5 + males_from_5_to_15 +
+                                        females_under_5 + females_from_5_to_15)
+                                    AS INTEGER
+                                    ) AS 'total'"),
+                            DB::raw("CAST(
+                                        SUM(males_under_5 + males_from_5_to_15)
+                                        AS INTEGER)
+                                     AS 'males'"),
+                            DB::raw("CAST(
+                                        SUM(females_under_5 + females_from_5_to_15)
+                                        AS INTEGER)
+                                     AS 'females'")
+                            )
+                        ->groupBy(['country_id', 'country_en', 'country_ar'])
+                        ->orderByDesc('total')
+                        ->get();
+
+        return $totals;
+    }
     /**
      * Returns an array of the total of each month for a given year.
      *

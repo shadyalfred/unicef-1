@@ -135,6 +135,7 @@
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-chart-bar"></i><span class="hide-menu">@lang('Charts')</span></a>
                             <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ route('charts.syrians') }}">@lang('Syrians')</a></li>
                                 <li><a href="{{ route('charts.governorates') }}">@lang('Governorates')</a></li>
                                 <li><a href="{{ route('charts.countries') }}">@lang('Nationalities')</a></li>
                             </ul>

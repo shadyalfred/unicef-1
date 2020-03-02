@@ -38,27 +38,55 @@ Route::get('reports-of-all-countries', function () {
 // End Table
 
 // Charts
-Route::get('get-monthly-totals-for-governorates/{year}', 'GovernorateReportController@getTotalPerMonth')
-    ->name('getTotalsForGovernoratesPerEachMonth');
+    // Range Charts
+    Route::get('get-totals-for-syrians/{from}/{to}', 'SyriansReportController@getTotalsForRange')
+        ->name('getTotalsForRangeSyr');
+    Route::get('get-total-kids-for-syrians/{from}/{to}', 'SyriansReportController@getTotalKidsForRange')
+        ->name('getTotalKidsForRangeSyr');
 
-Route::get('get-monthly-totals-for-nationalities/{year}', 'CountryReportController@getTotalPerMonth')
-    ->name('getTotalsForNationalitiesPerEachMonth');
+    Route::get('get-totals-for-governorates/{from}/{to}', 'GovernorateReportController@getTotalsForRange')
+        ->name('getTotalsForRangeGov');
+    Route::get('get-total-kids-for-governorates/{from}/{to}', 'GovernorateReportController@getTotalKidsForRange')
+        ->name('getTotalKidsForRangeGov');
+    
+    Route::get('get-totals-for-nationalities/{from}/{to}', 'CountryReportController@getTotalsForRange')
+        ->name('getTotalsForRangeNat');
+    Route::get('get-total-kids-for-nationalities/{from}/{to}', 'CountryReportController@getTotalKidsForRange')
+        ->name('getTotalKidsForRangeNat');
 
-Route::get('get-total-of-males-and-females-for-governorates/{year}', 'GovernorateReportController@getTotalMalesFemales')
-    ->name('getTotalGovernoratesMalesFemales');
+    // Yearly Charts
+    Route::get('get-monthly-totals-for-syrians/{year}', 'SyriansReportController@getTotalPerMonth')
+        ->name('getTotalsForSyriansPerEachMonth');
 
-Route::get('get-total-of-males-and-females-for-nationalities/{year}', 'CountryReportController@getTotalMalesFemales')
-    ->name('getTotalNationalitiesMalesFemales');
+    Route::get('get-monthly-totals-for-governorates/{year}', 'GovernorateReportController@getTotalPerMonth')
+        ->name('getTotalsForGovernoratesPerEachMonth');
 
-Route::prefix('get-totals-for-each-governorate')->group(function () {
-    Route::get('{year}', 'GovernorateReportController@getTotalsForEach')
-        ->name('getTotalsForGovernorate');
-});
+    Route::get('get-monthly-totals-for-nationalities/{year}', 'CountryReportController@getTotalPerMonth')
+        ->name('getTotalsForNationalitiesPerEachMonth');
 
-Route::prefix('get-totals-for-each-nationality')->group(function () {
-    Route::get('{year}', 'CountryReportController@getTotalsForEach')
-        ->name('getTotalsForNationality');
-});
+    Route::get('get-total-of-males-and-females-for-syrians/{year}', 'SyriansReportController@getTotalMalesFemales')
+        ->name('getTotalSyriansMalesFemales');
+
+    Route::get('get-total-of-males-and-females-for-governorates/{year}', 'GovernorateReportController@getTotalMalesFemales')
+        ->name('getTotalGovernoratesMalesFemales');
+
+    Route::get('get-total-of-males-and-females-for-nationalities/{year}', 'CountryReportController@getTotalMalesFemales')
+        ->name('getTotalNationalitiesMalesFemales');
+
+    Route::prefix('get-totals-for-each-governorate-of-syrians')->group(function () {
+        Route::get('{year}', 'SyriansReportController@getTotalsForEach')
+            ->name('getTotalsForSyrians');
+    });
+
+    Route::prefix('get-totals-for-each-governorate')->group(function () {
+        Route::get('{year}', 'GovernorateReportController@getTotalsForEach')
+            ->name('getTotalsForGovernorate');
+    });
+
+    Route::prefix('get-totals-for-each-nationality')->group(function () {
+        Route::get('{year}', 'CountryReportController@getTotalsForEach')
+            ->name('getTotalsForNationality');
+    });
 // End Charts
 
 // Maps

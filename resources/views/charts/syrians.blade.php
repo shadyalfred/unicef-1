@@ -5,18 +5,18 @@
 @section('page-title-breadcrumb', __('Governorates Chart'))
 
 {{-- Range Charts --}}
-@section('range-api-1', route('getTotalsForRangeGov', ['', '']))
+@section('range-api-1', route('getTotalsForRangeSyr', ['', '']))
 @section('range-chart-1-xkey', 'governorate')
 
-@section('range-api-2', route('getTotalKidsForRangeGov', ['', '']))
+@section('range-api-2', route('getTotalKidsForRangeSyr', ['', '']))
 
 {{-- Yearly Charts --}}
-@section('api1', route('getTotalsForGovernoratesPerEachMonth', ''))
+@section('api1', route('getTotalsForSyriansPerEachMonth', ''))
 
-@section('api2', route('getTotalGovernoratesMalesFemales', ''))
+@section('api2', route('getTotalSyriansMalesFemales', ''))
 
 {{-- Chart 3 --}}
-@section('api3', route('getTotalsForGovernorate', ''))
+@section('api3', route('getTotalsForSyrians', ''))
 
 @section('chart-3-xkey', 'governorate')
 
