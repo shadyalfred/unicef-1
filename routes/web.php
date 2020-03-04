@@ -11,6 +11,14 @@
 |
 */
 
+// Make Symbolic link to storage
+
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('link', function() {
+    Artisan::call('storage:link');
+});
+
 // Switch App Locale
 Route::get('switchLocale', function () {
     $locale = app()->getLocale() === 'en' ? 'ar' : 'en';
@@ -36,8 +44,19 @@ Route::get('home', function () {
     return view('home');
 })->middleware('auth')->name('home');
 
+Route::middleware('verified')->group(function () {
+    // Show Profile
+    Route::get('user/{user}', 'UserController@show')
+        ->name('user.show')->middleware('can:view-profile,user');
+    
+    // Update Profile
+    Route::put('user/{user}', 'UserController@update')
+        ->name('user.update')->middleware('can:view-profile,user');
 
-Route::middleware('auth')->group(function () {
+    // Edit Profile
+    Route::get('user/{user}/edit', 'UserController@edit')
+        ->name('user.edit')->middleware('can:view-profile,user');
+
     // Add new governorate
     Route::get('add/governorate', 'GovernorateController@create')
         ->name('governorate.add.showForm');
