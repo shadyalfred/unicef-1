@@ -119,7 +119,7 @@ class UserController extends Controller
         }
         
         if (!empty($validatedData)) {
-            return back()->withSuccess(__('User updated successfully!'));
+            return back()->withSuccess(__('User was updated successfully!'));
         } else {
             return back();
         }
