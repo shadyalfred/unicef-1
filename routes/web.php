@@ -11,13 +11,6 @@
 |
 */
 
-// Make Symbolic link to storage
-
-use Illuminate\Support\Facades\Artisan;
-
-Route::get('link', function() {
-    Artisan::call('storage:link');
-});
 
 // Switch App Locale
 Route::get('switchLocale', function () {
