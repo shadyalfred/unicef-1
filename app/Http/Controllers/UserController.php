@@ -104,8 +104,10 @@ class UserController extends Controller
             $user->password = Hash::make($validatedData['password']);
         }
 
-        if ($request->hasFile('profile_picture') && $user->profile_picture !== 'profile_pictures/default.png') {
-            Storage::disk('public')->delete($user->profile_picture);
+        if ($request->hasFile('profile_picture')) {
+            if ($user->profile_picture !== 'profile_pictures/default.png') {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
             $path = $request->file('profile_picture')->store('profile_pictures', 'public');
             $user->profile_picture = $path;
         }
