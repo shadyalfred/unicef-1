@@ -126,7 +126,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-bar-chart-alt"></i><span class="hide-menu">Reports</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-table-large"></i><span class="hide-menu">Reports</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ route('reports.syrians') }}">@lang('Syrians')</a></li>
                                 <li><a href="{{ route('reports.governorates') }}">@lang('Governorates')</a></li>
