@@ -86,7 +86,7 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('profile_picture')) {
-            $rules['profile_picture'] = 'file|max:10000';
+            $rules['profile_picture'] = 'file|max:1000';
         }
 
         $validatedData = $request->validate($rules);
