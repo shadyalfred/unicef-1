@@ -115,7 +115,7 @@
                                 <!-- text-->
                                 <div class="dropdown-divider"></div>
                                 <!-- Log out -->
-                                <a href="javascript:void(0)" onclick="document.getElementById('log-out-form').submit()" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                                <a href="javascript:void(0)" onclick="document.getElementById('log-out-form').submit()" class="dropdown-item"><i class="fa fa-power-off"></i> @lang('Logout')</a>
                                 <form id="log-out-form" action="{{ route('logout') }}" method="post">
                                     @csrf
                                 </form>
@@ -154,6 +154,8 @@
                         </li>
 
                         <li> <a class="waves-effect waves-dark" href="{{ route('governorate.add.showForm') }}" aria-expanded="false"><i class="fas fa-plus-square"></i><span class="hide-menu">@lang('Add Governorate')</span></a></li>
+
+                        <li> <a class="waves-effect waves-dark" href="{{ url('translations') }}" aria-expanded="false"><i class="mdi mdi-google-translate"></i><span class="hide-menu">@lang('Translations')</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
