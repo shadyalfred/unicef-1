@@ -15,7 +15,6 @@
 
     {{-- Custom CSS --}}
     <link href="{{ asset('assets/dist/css/style.min.css') }}" type="text/css" rel="stylesheet">
-
     <!-- Styles -->
     @yield('css')
 </head>

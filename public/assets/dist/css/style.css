@@ -22,7 +22,7 @@ File: scss
  *	12. Forms
  *	14. Component
  */
-@import url(../../../assets/icons/font-awesome/css/fontawesome-all.css);
+@import url(../../../assets/icons/font-awesome/css/all.css);
 @import url(../../../assets/icons/simple-line-icons/css/simple-line-icons.css);
 @import url(../../../assets/icons/weather-icons/css/weather-icons.min.css);
 @import url(../../../assets/icons/themify-icons/themify-icons.css);
@@ -32,7 +32,7 @@ File: scss
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 .skin-default .topbar {
-  background: #4F5467; }
+  background: #1CABE2; }
 
 .skin-green {
   /*Theme Colors*/ }
@@ -440,11 +440,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #fb9678;
+  color: #1CABE2;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #f95c2e;
+    color: #00b8ffe0;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -2042,26 +2042,26 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #212529;
-  background-color: #fb9678;
-  border-color: #fb9678; }
+  background-color: #1CABE2;
+  border-color: #1CABE2; }
   .btn-primary:hover {
     color: #212529;
-    background-color: #fa7953;
-    border-color: #fa6f46; }
+    background-color: #00b8ffe0;
+    border-color: #00b8ffe0; }
   .btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 0.2rem rgba(218, 133, 108, 0.5); }
+    box-shadow: 0 0 0 0.2rem rgba(108, 193, 218, 0.5); }
   .btn-primary.disabled, .btn-primary:disabled {
     color: #212529;
-    background-color: #fb9678;
-    border-color: #fb9678; }
+    background-color: #1CABE2;
+    border-color: #1CABE2; }
   .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
   .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #fa6f46;
-    border-color: #f9663a; }
+    background-color: #1CABE2;
+    border-color: #00b8ffe0; }
     .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
     .show > .btn-primary.dropdown-toggle:focus {
-      box-shadow: 0 0 0 0.2rem rgba(218, 133, 108, 0.5); }
+      box-shadow: 0 0 0 0.2rem rgba(108, 193, 218, 0.5); }
 
 .btn-secondary {
   color: #212529;
@@ -2717,7 +2717,7 @@ input[type="button"].btn-block {
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #fb9678; }
+    background-color: #1CABE2; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
     pointer-events: none;
@@ -2990,8 +2990,8 @@ input[type="button"].btn-block {
   opacity: 0; }
   .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
-    border-color: #fb9678;
-    background-color: #fb9678; }
+    border-color: #1CABE2;
+    background-color: #1CABE2; }
   .custom-control-input:focus ~ .custom-control-label::before {
     box-shadow: transparent; }
   .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
@@ -7397,10 +7397,10 @@ button.bg-purple:focus {
   color: #fff !important; }
 
 .text-primary {
-  color: #fb9678 !important; }
+  color: #1CABE2 !important; }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #f95c2e !important; }
+  color: #00b8ffe0 !important; }
 
 .text-secondary {
   color: #f8f9fa !important; }
@@ -18578,7 +18578,7 @@ html {
   min-height: 100%; }
 
 a {
-  color: #fb9678; }
+  color: #1CABE2; }
 
 a:hover,
 a:focus {
@@ -18587,7 +18587,7 @@ a:focus {
 a.link {
   color: #212529; }
   a.link:hover, a.link:focus {
-    color: #fb9678; }
+    color: #1CABE2; }
 
 .box {
   border-radius: 0.25rem;
@@ -18874,7 +18874,11 @@ Thumb size
   display: none; }
 
 .img-circle {
-  border-radius: 100%; }
+  width:200px;
+  height:200px;
+  object-fit:cover;
+  border-radius:50%;
+  object-position:50% 0%; }
 
 .img-responsive {
   max-width: 100%;
@@ -19028,7 +19032,7 @@ ul.list-style-none {
       display: block;
       text-decoration: none; }
       ul.list-style-none li a:hover {
-        color: #fb9678; }
+        color: #00b8ffe0; }
 
 /*******************
 Card
@@ -19281,9 +19285,13 @@ use profile section
     display: block;
     text-align: center; }
   .user-profile .user-pro-body img {
-    width: 50px;
-    display: block;
-    margin: 0 auto 10px; }
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    object-position:50% 0%;
+    border-radius:50;
+    display:block;
+    margin:0 auto 10px; }
   .user-profile .dropdown-menu {
     right: 0;
     width: 180px;
@@ -19322,9 +19330,9 @@ sidebar navigation
         font-size: 14px;
         font-weight: 400; }
         .sidebar-nav ul li a.active, .sidebar-nav ul li a:hover {
-          color: #fb9678; }
+          color: #1CABE2; }
           .sidebar-nav ul li a.active i, .sidebar-nav ul li a:hover i {
-            color: #fb9678; }
+            color: #1CABE2; }
         .sidebar-nav ul li a.active {
           font-weight: 500;
           color: #343a40; }
@@ -19359,11 +19367,11 @@ sidebar navigation
     margin-bottom: 8px;
     margin-top: 8px; }
     .sidebar-nav > ul > li.active > a {
-      color: #fb9678;
+      color: #1CABE2;
       font-weight: 500;
-      border-left: 3px solid #fb9678; }
+      border-left: 3px solid #1CABE2; }
       .sidebar-nav > ul > li.active > a i {
-        color: #fb9678; }
+        color: #1CABE2; }
   .sidebar-nav .waves-effect {
     transition: none;
     -webkit-transition: none;
@@ -19870,7 +19878,7 @@ Form Material page
 .form-material .form-control,
 .form-material .form-control.focus,
 .form-material .form-control:focus {
-  background-image: linear-gradient(#fb9678, #fb9678), linear-gradient(#e9ecef, #e9ecef);
+  background-image: linear-gradient(#1CABE2, #1CABE2), linear-gradient(#e9ecef, #e9ecef);
   border: 0 none;
   border-radius: 0;
   box-shadow: none;
@@ -20797,7 +20805,7 @@ icons path
       color: #ced4da;
       font-size: 11px; }
     .page-titles .breadcrumb .breadcrumb-item.active {
-      color: #fb9678;
+      color: #1CABE2;
       font-weight: 500; }
 
 /*******************
