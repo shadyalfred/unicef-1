@@ -1,7 +1,7 @@
 @extends('layouts.form')
 
 @section('additional-breadcrumb')
-    <li class="breadcrumb-item"><a href="#">Add</a></li>
+    <li class="breadcrumb-item"><a href="#">@lang('Add')</a></li>
 @endsection
 
 @section('page-title-breadcrumb', __('Governorate'))
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <button type="submit" class="btn btn-success">
-                        <i class="fas fa-plus"></i> Add
+                        <i class="fas fa-plus"></i> @lang('Add')
                     </button>
                 </div>
             </div>

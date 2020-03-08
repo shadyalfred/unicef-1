@@ -15,6 +15,13 @@
 
     {{-- Custom CSS --}}
     <link href="{{ asset('assets/dist/css/style.min.css') }}" type="text/css" rel="stylesheet">
+
+    {{-- RTL --}}
+    @if (app()->getLocale() === 'ar')
+        <!-- RTL -->
+        <link rel="stylesheet" href="{{ asset('assets/dist/css/rtl.css') }}" type="text/css" />
+    @endif
+
     <!-- Styles -->
     @yield('css')
 </head>
@@ -80,7 +87,7 @@
                     <ul class="navbar-nav my-lg-0">
                         {{-- Switch Locale --}}
                         <li class="nav-item right-side-toggle">
-                            <a class="nav-link waves-effect waves-light" href="{{ route('switchLocale') }}" data-toggle="tooltip" title="@lang('Switch Language')">
+                            <a class="nav-link waves-effect waves-light" href="{{ route('switchLocale') }}" data-toggle="tooltip" title="@lang('nav.switchLanguage')">
                                 <i class="fas fa-language"
                                    style="font-size: 1.8rem; vertical-align: middle"></i>
                             </a>
@@ -106,15 +113,15 @@
                             <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
                             <div class="dropdown-menu animated flipInY">
                                 <!-- text-->
-                                <a href="{{ route('user.show', auth()->user()->id) }}" class="dropdown-item"><i class="ti-user"></i> @lang('My Profile')</a>
+                                <a href="{{ route('user.show', auth()->user()->id) }}" class="dropdown-item"><i class="ti-user"></i> @lang('profile.profile')</a>
                                 <!-- text-->
                                 <div class="dropdown-divider"></div>
                                 <!-- text-->
-                                <a href="{{ route('user.edit', auth()->user()->id) }}" class="dropdown-item"><i class="ti-settings"></i> @lang('Account Setting')</a>
+                                <a href="{{ route('user.edit', auth()->user()->id) }}" class="dropdown-item"><i class="ti-settings"></i> @lang('profile.accountSetting')</a>
                                 <!-- text-->
                                 <div class="dropdown-divider"></div>
                                 <!-- Log out -->
-                                <a href="javascript:void(0)" onclick="document.getElementById('log-out-form').submit()" class="dropdown-item"><i class="fa fa-power-off"></i> @lang('Logout')</a>
+                                <a href="javascript:void(0)" onclick="document.getElementById('log-out-form').submit()" class="dropdown-item"><i class="fa fa-power-off"></i> @lang('profile.logout')</a>
                                 <form id="log-out-form" action="{{ route('logout') }}" method="post">
                                     @csrf
                                 </form>
@@ -125,36 +132,36 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-table-large"></i><span class="hide-menu">Reports</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-table-large"></i><span class="hide-menu">@lang('nav.reports')</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('reports.syrians') }}">@lang('Syrians')</a></li>
-                                <li><a href="{{ route('reports.governorates') }}">@lang('Governorates')</a></li>
-                                <li><a href="{{ route('reports.countries') }}">@lang('Nationalities')</a></li>
+                                <li><a href="{{ route('reports.syrians') }}">@lang('nav.syrians')</a></li>
+                                <li><a href="{{ route('reports.governorates') }}">@lang('nav.governorates')</a></li>
+                                <li><a href="{{ route('reports.countries') }}">@lang('nav.nationalities')</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-chart-bar"></i><span class="hide-menu">@lang('Charts')</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-chart-bar"></i><span class="hide-menu">@lang('nav.charts')</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('charts.syrians') }}">@lang('Syrians')</a></li>
-                                <li><a href="{{ route('charts.governorates') }}">@lang('Governorates')</a></li>
-                                <li><a href="{{ route('charts.countries') }}">@lang('Nationalities')</a></li>
+                                <li><a href="{{ route('charts.syrians') }}">@lang('nav.syrians')</a></li>
+                                <li><a href="{{ route('charts.governorates') }}">@lang('nav.governorates')</a></li>
+                                <li><a href="{{ route('charts.countries') }}">@lang('nav.nationalities')</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-login"></i><span class="hide-menu">@lang('Import')</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-login"></i><span class="hide-menu">@lang('nav.import')</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('import.governorate.form') }}">@lang('Governorates')</a></li>
-                                <li><a href="{{ route('import.country.form') }}">@lang('Nationalities')</a></li>
+                                <li><a href="{{ route('import.governorate.form') }}">@lang('nav.governorates')</a></li>
+                                <li><a href="{{ route('import.country.form') }}">@lang('nav.nationalities')</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-map-alt"></i><span class="hide-menu">@lang('Maps')</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-map-alt"></i><span class="hide-menu">@lang('nav.maps')</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('map.syrians') }}">@lang('Syrians')</a></li>
-                                <li><a href="{{ route('map.allNationalities') }}">@lang('All Nationalities')</a></li>
+                                <li><a href="{{ route('map.syrians') }}">@lang('nav.syrians')</a></li>
+                                <li><a href="{{ route('map.allNationalities') }}">@lang('nav.allNationalities')</a></li>
                             </ul>
                         </li>
 
-                        <li> <a class="waves-effect waves-dark" href="{{ route('governorate.add.showForm') }}" aria-expanded="false"><i class="fas fa-plus-square"></i><span class="hide-menu">@lang('Add Governorate')</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('governorate.add.showForm') }}" aria-expanded="false"><i class="fas fa-plus-square"></i><span class="hide-menu">@lang('nav.addGovernorate')</span></a></li>
 
-                        <li> <a class="waves-effect waves-dark" href="{{ url('translations') }}" aria-expanded="false"><i class="mdi mdi-google-translate"></i><span class="hide-menu">@lang('Translations')</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ url('translations') }}" aria-expanded="false"><i class="mdi mdi-google-translate"></i><span class="hide-menu">@lang('nav.translations')</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -182,7 +189,7 @@
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('home.home')</a></li>
                                 @yield('additional-breadcrumb')
                                 @if (Route::currentRouteName() !== 'home')
                                     <li class="breadcrumb-item active">@yield('page-title-breadcrumb')</li>

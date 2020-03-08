@@ -1,8 +1,8 @@
 @extends('layouts.chart')
 
-@section('page-title', __('Governorates Chart'))
+@section('page-title', __('Syrians Chart'))
 
-@section('page-title-breadcrumb', __('Governorates Chart'))
+@section('page-title-breadcrumb', __('Syrians Chart'))
 
 {{-- Range Charts --}}
 @section('range-api-1', route('getTotalsForRangeSyr', ['', '']))

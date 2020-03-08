@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', __('Home'))
+@section('page-title', __('home.home'))
 
 @section('content')
     <!-- ============================================================== -->
@@ -17,10 +17,10 @@
                         </div>
                     @endif
                     <h4 class="card-title">
-                        @lang('Welcome!')
+                        @lang('home.welcome')
                     </h4>
                     <p>
-                        @lang('Please use the sidebar to navigate.')
+                        @lang('home.message')
                     </p>
                 </div>
             </div>
