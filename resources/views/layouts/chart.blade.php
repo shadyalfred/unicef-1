@@ -188,7 +188,8 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "bottom"
-            }).on('changeDate', () => {
+            }).datepicker('setDate', 'today');
+            fromDate.on('changeDate', () => {
                 updateRangeChart1();
                 updateRangeChart2();
             });
@@ -203,10 +204,14 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "bottom"
-            }).on('changeDate', () => {
+            }).datepicker('setDate', 'today');
+            toDate.on('changeDate', () => {
                 updateRangeChart1();
                 updateRangeChart2();
             });
+
+            updateRangeChart1();
+            updateRangeChart2();
 
             yearInput = $('#year-input');
             yearInput.datepicker({
