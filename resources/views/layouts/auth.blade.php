@@ -18,6 +18,10 @@
     <link href="{{ asset('assets/dist/css/pages/login-register-lock.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet">
+    <!-- RTL -->
+    @if (app()->getLocale() === 'ar')
+        <link rel="stylesheet" href="{{ asset('assets/dist/css/rtl.css') }}" type="text/css" />
+    @endif
 </head>
 
 <body class="@yield('body-class', 'skin-default fixed-layout')">
