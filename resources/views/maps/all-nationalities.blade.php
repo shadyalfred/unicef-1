@@ -4,4 +4,4 @@
 
 @section('page-title-breadcrumb', __('Map of All Nationalities'))
 
-@section('map-api', route('allNationalitiesMapApi', ''))
+@section('map-api', route('allNationalitiesMapApi', ['', '']))

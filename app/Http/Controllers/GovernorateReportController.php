@@ -179,12 +179,12 @@ class GovernorateReportController extends Controller
     }
 
     /**
-     * Returns an array of the total for each governorate for a given date
+     * Returns an array of the total for each governorate for a given period of date
      * with the gov. id and locale name.
      *
      * @return \Illuminate\Http\Response
      */
-    public function map($date)
+    public function map($from, $to)
     {
         if (request()->header('Content-Language') === 'ar') {
             $governorate = 'name_ar';
@@ -193,7 +193,7 @@ class GovernorateReportController extends Controller
         }
 
         $totals = DB::table('governorate_reports')
-                        ->where('date', '=', $date)
+                        ->whereBetween('date', [$from, $to])
                         ->leftJoin('governorates', 'governorates.id', '=', 'governorate_reports.governorate_id')
                         ->select(
                             DB::raw("$governorate AS name"),

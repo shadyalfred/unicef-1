@@ -90,9 +90,9 @@ Route::get('reports-of-all-countries', function () {
 // End Charts
 
 // Maps
-Route::get('syrians-map/{year}', 'SyriansReportController@map')
+Route::get('syrians-map/{from}/{to}', 'SyriansReportController@map')
     ->name('syriansMapApi');
 
-Route::get('governorates-map/{year}', 'GovernorateReportController@map')
+Route::get('governorates-map/{from}/{to}', 'GovernorateReportController@map')
     ->name('allNationalitiesMapApi');
 // End Maps

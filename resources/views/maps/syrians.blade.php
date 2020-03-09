@@ -4,4 +4,4 @@
 
 @section('page-title-breadcrumb', __('Map of Syrians in Egypt'))
 
-@section('map-api', route('syriansMapApi', ''))
+@section('map-api', route('syriansMapApi', ['', '']))
