@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 
     <style>
-        #year-input:hover {
+        #date-input:hover {
             cursor: pointer;
         }
     </style>
@@ -25,11 +25,11 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        @lang('Select year')
+                        @lang('Select date')
                     </h4>
                     <div>
-                        <input type="text" id="year-input" readonly
-                            style="display: inline-block; width: 50px; border: none;
+                        <input type="text" id="date-input" readonly
+                            style="display: inline-block; width: 80px; border: none;
                                    border-bottom: 1px solid; text-align: center">
                     </div>
                 </div>
@@ -75,7 +75,14 @@
         function updateMap() {
             clearMap();
 
-            fetch(api + yearInput.val(), {headers: {"Content-Language": "{{ app()->getLocale() }}"}})
+            let date = "01/" + yearInput.val();
+
+            date = date.split("/");
+            date.reverse();
+            date = date.join("-");
+
+            console.log(api+date)
+            fetch(api + date, {headers: {"Content-Language": "{{ app()->getLocale() }}"}})
                 .then((response) => response.json())
                 .then((resJson) => {
                     resJson.forEach((governorate) => {
@@ -98,11 +105,11 @@
         let yearInput;
 
         $(document).ready(() => {
-            yearInput = $('#year-input');
+            yearInput = $('#date-input');
             yearInput.datepicker({
-                format: "yyyy",
-                startView: 2,
-                minViewMode: 2,
+                format: "mm/yyyy",
+                startView: 1,
+                minViewMode: 1,
                 todayBtn: "linked",
                 autoclose: true,
                 todayHighlight: true,

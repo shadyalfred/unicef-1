@@ -179,12 +179,12 @@ class GovernorateReportController extends Controller
     }
 
     /**
-     * Returns an array of the total for each governorate in a givern year
+     * Returns an array of the total for each governorate for a given date
      * with the gov. id and locale name.
      *
      * @return \Illuminate\Http\Response
      */
-    public function map($year)
+    public function map($date)
     {
         if (request()->header('Content-Language') === 'ar') {
             $governorate = 'name_ar';
@@ -193,7 +193,7 @@ class GovernorateReportController extends Controller
         }
 
         $totals = DB::table('governorate_reports')
-                        ->whereYear('date', '=', $year)
+                        ->where('date', '=', $date)
                         ->leftJoin('governorates', 'governorates.id', '=', 'governorate_reports.governorate_id')
                         ->select(
                             DB::raw("$governorate AS name"),
@@ -210,6 +210,7 @@ class GovernorateReportController extends Controller
                             'map_key'
                             )
                         ->groupBy(['governorate_id', 'name_en', 'name_ar', 'map_key'])
+                        ->orderByDesc('total')
                         ->get();
 
         return $totals;
