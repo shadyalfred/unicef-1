@@ -52,11 +52,5 @@
             <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">@lang('login.login')</button>
         </div>
     </div>
-
-    <div class="form-group m-b-0">
-        <div class="col-sm-12 text-center">
-            @lang('login.haveNoAccount') <a href="{{ route('register') }}" class="text-primary m-l-5"><b>@lang('login.signup')</b></a>
-        </div>
-    </div>
 </form>
 @endsection

@@ -31,5 +31,10 @@ class AuthServiceProvider extends ServiceProvider
                         ? Response::allow()
                         : Response::deny(__('Not authorized to view this profile.'));
         });
+
+        Gate::define('create-user', function ($user) {
+            return $user->isAdmin ? Response::allow()
+                                  : Response::deny(__('Unauthorized.'));
+        });
     }
 }

@@ -11,5 +11,6 @@ return [
     'allNationalities' => 'كل الجنسيات',
     'addGovernorate' => 'اضافة محافظة',
     'translations' => 'الترجمات',
+    'addNewUser' => 'اضافة مستخدم جديد',
     'switchLanguage' => 'تغيير اللغة',
 ];

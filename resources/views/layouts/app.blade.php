@@ -162,6 +162,10 @@
                         <li> <a class="waves-effect waves-dark" href="{{ route('governorate.add.showForm') }}" aria-expanded="false"><i class="fas fa-plus-square"></i><span class="hide-menu">@lang('nav.addGovernorate')</span></a></li>
 
                         <li> <a class="waves-effect waves-dark" href="{{ url('translations') }}" aria-expanded="false"><i class="mdi mdi-google-translate"></i><span class="hide-menu">@lang('nav.translations')</span></a></li>
+
+                        @if (auth()->user()->isAdmin)
+                            <li> <a class="waves-effect waves-dark" href="{{ route('user.create') }}" aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">@lang('nav.addNewUser')</span></a></li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

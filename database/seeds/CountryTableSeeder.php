@@ -37,10 +37,7 @@ class CountryTableSeeder extends Seeder
             'Yemen',
         ];
 
-        $comment = 'Seeding Countries Completed!';
-        $this->command->comment($comment . 'comment');
-
-        for ($i = 0; $i < 10; $i++) { 
+        for ($i = 0; $i < 10; $i++) {
             DB::table('countries')->insert([
                 'country_ar' => $country_ar[$i],
                 'country_en' => $country_en[$i]

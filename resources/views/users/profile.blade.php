@@ -30,6 +30,10 @@
                             <br>
                             <p class="text-muted">{{ $user->email }}</p>
                         </div>
+                        @if ($user->isAdmin)
+                            <div class="col-lg-12 text-success"> <strong>@lang('Admin')</strong>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

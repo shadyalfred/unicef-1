@@ -82,5 +82,7 @@
     "Please type the name exactly as it is typed in the excel sheet, paying attention to Alif Hamza, and Taa' Marboota": "الرجاء كتابة اسم المحافظة بنفس الطريقة المستخدمة بملف الاكسيل.",
     "Map Key": "مفتاح الخريطة",
     "Choose the governorate's name": "اختر اسم المحافظة",
-    "Switch Language": "تغيير اللغة"
+    "Switch Language": "تغيير اللغة",
+    "User": "مستخدم",
+    "Add new user": "اضافة مستخدم جديد"
 }

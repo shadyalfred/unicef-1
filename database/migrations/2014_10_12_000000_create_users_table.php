@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('locale', 2)->default('en');
+            $table->boolean('isAdmin')->default(false);
             $table->string('profile_picture', 90)->default('profile_pictures/default.png');
             $table->rememberToken();
             $table->timestamps();
