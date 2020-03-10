@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('UsersTableSeeder');
-        $this->command->info('Admin user created!');
+        $this->command->info('Admin user was created!');
 
         $this->call('GovernorateTableSeeder');
         $this->command->info('Governorates table seeded!');
