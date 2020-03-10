@@ -42,7 +42,7 @@ class GovernorateReportController extends Controller
                         ->orderByDesc('total')
                         ->get();
 
-        return $totals;
+        return response()->json($totals);
     }
 
     public function getTotalKidsForRange($from, $to)

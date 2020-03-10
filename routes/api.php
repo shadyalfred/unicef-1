@@ -38,6 +38,7 @@ Route::get('reports-of-all-countries', function () {
 // End Table
 
 // Charts
+Route::middleware('cors')->group(function () {
     // Range Charts
     Route::get('get-totals-for-syrians/{from}/{to}', 'SyriansReportController@getTotalsForRange')
         ->name('getTotalsForRangeSyr');
@@ -48,7 +49,7 @@ Route::get('reports-of-all-countries', function () {
         ->name('getTotalsForRangeGov');
     Route::get('get-total-kids-for-governorates/{from}/{to}', 'GovernorateReportController@getTotalKidsForRange')
         ->name('getTotalKidsForRangeGov');
-    
+
     Route::get('get-totals-for-nationalities/{from}/{to}', 'CountryReportController@getTotalsForRange')
         ->name('getTotalsForRangeNat');
     Route::get('get-total-kids-for-nationalities/{from}/{to}', 'CountryReportController@getTotalKidsForRange')
@@ -87,12 +88,13 @@ Route::get('reports-of-all-countries', function () {
         Route::get('{year}', 'CountryReportController@getTotalsForEach')
             ->name('getTotalsForNationality');
     });
-// End Charts
+    // End Charts
 
-// Maps
-Route::get('syrians-map/{from}/{to}', 'SyriansReportController@map')
-    ->name('syriansMapApi');
+    // Maps
+    Route::get('syrians-map/{from}/{to}', 'SyriansReportController@map')
+        ->name('syriansMapApi');
 
-Route::get('governorates-map/{from}/{to}', 'GovernorateReportController@map')
-    ->name('allNationalitiesMapApi');
-// End Maps
+    Route::get('governorates-map/{from}/{to}', 'GovernorateReportController@map')
+        ->name('allNationalitiesMapApi');
+    // End Maps
+});
