@@ -438,3 +438,7 @@ html body .dd3-item > button {
 
 html body .dd-item > button {
   float: right; }
+/* My Edit */
+div.tt_name_sm {
+  float: right;
+}
