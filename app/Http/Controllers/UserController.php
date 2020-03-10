@@ -124,13 +124,10 @@ class UserController extends Controller
             $user->profile_picture = $path;
         }
 
-        $user->save();
 
-        if (is_null($user->email_verified_at)) {
-            $user->sendEmailVerificationNotification();
-        }
-        
-        if (!empty($validatedData)) {
+        if (! empty($validatedData)) {
+            $user->save();
+
             return back()->withSuccess(__('User was updated successfully!'));
         } else {
             return back();
