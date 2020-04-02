@@ -382,7 +382,7 @@
                 const wb = XLSX.utils.table_to_book(getPrintableTable(), {sheet: "Sheet 1"});
 
                 XLSX.writeFile(wb, 'report.xlsx');
-            })
+            });
 
             // Popup table button
             $('#popup-table-btn').on('click', () => {
