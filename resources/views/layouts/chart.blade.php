@@ -178,6 +178,7 @@
         let yearInput;
 
         $(document).ready(() => {
+            const defaultDate = new Date(new Date().getFullYear() + "-01-01");
             fromDate = $('#from');
             fromDate.datepicker({
                 format: "mm-yyyy",
@@ -188,7 +189,7 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "bottom"
-            }).datepicker('setDate', 'today');
+            }).datepicker('setDate', defaultDate);
             fromDate.on('changeDate', () => {
                 updateRangeChart1();
                 updateRangeChart2();
