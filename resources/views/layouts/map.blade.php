@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('css')
     {{-- Datepicker --}}
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
@@ -126,6 +125,7 @@
     <script type="text/javascript">
         let fromDate;
         let toDate;
+        const defaultDate = new Date(new Date().getFullYear() + "-01-01");
 
         $(document).ready(() => {
             fromDate = $('#from');
@@ -138,7 +138,7 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: "bottom"
-            }).datepicker('setDate', 'today')
+            }).datepicker('setDate', defaultDate)
               .on('changeDate', () => {
                   updateMap();
               });

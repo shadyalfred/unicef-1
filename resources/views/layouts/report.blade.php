@@ -14,6 +14,25 @@
         #ffin:hover {
             cursor: pointer;
         }
+        .page-item.active .page-link {
+            background-color: #1cabe2;
+            border-color: #1cabe2;
+        }
+        .dataTables_filter input {
+            background-image: linear-gradient(#1cabe2, #1cabe2),linear-gradient(#e9ecef,#e9ecef) !important;
+        }
+        button.btn-outline-info:hover {
+            color: #03a9f3;
+            background-color: initial;
+            border-color: #03a9f3;
+        }
+        .dataTables_length select:focus {
+            background-image: linear-gradient(#1cabe2,#1cabe2),linear-gradient(#e9ecef,#e9ecef);
+        }
+        .page-link,
+        .page-link:hover {
+            color: #1cabe2;
+        }
     </style>
 
     {{-- Datatable RTL --}}
@@ -147,7 +166,6 @@
     </div>
     <!-- End Page Content -->
     <!-- ============================================================== -->
-
 @endsection
 
 @section('javascript')
@@ -171,7 +189,7 @@
 
     {{-- Declare function --}}
     <script type="text/javascript">
-        function getPrintableTable() {
+        function getPrintableTable(isExcel = false) {
             const customTable = document.createElement('table');
             customTable.setAttribute('id', 'reports-table');
 
@@ -212,6 +230,14 @@
                     </tbody>
                 </table>
             `;
+
+            if (isExcel) {
+                for (let index = 0; index < table.rows().nodes().length; index++) {
+                    let elementCopy = table.rows().nodes()[index].cloneNode(true);
+                    customTable.getElementsByTagName('tbody')[0].appendChild(elementCopy);
+                }
+            }
+
             for (let index = 0; index < table.rows({page: 'current'}).nodes().length; index++) {
                 let elementCopy = table.rows({page: 'current'}).nodes()[index].cloneNode(true);
                 customTable.getElementsByTagName('tbody')[0].appendChild(elementCopy);
@@ -260,7 +286,7 @@
                     }
                 ],
                 order: [[ 16, "desc" ]],
-                dom: 'Bfrtip',
+                dom: 'Bfrtipl',
                 scrollX: true,
                 @if(app()->getLocale() === 'ar')
                     language: {
@@ -379,7 +405,7 @@
 
             // Export as .xlsx button
             $('#export-table-btn').on('click', () => {
-                const wb = XLSX.utils.table_to_book(getPrintableTable(), {sheet: "Sheet 1"});
+                const wb = XLSX.utils.table_to_book(getPrintableTable(true), {sheet: "Sheet 1"});
 
                 XLSX.writeFile(wb, 'report.xlsx');
             });
