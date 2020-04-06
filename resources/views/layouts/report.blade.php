@@ -236,11 +236,11 @@
                     let elementCopy = table.rows().nodes()[index].cloneNode(true);
                     customTable.getElementsByTagName('tbody')[0].appendChild(elementCopy);
                 }
-            }
-
-            for (let index = 0; index < table.rows({page: 'current'}).nodes().length; index++) {
-                let elementCopy = table.rows({page: 'current'}).nodes()[index].cloneNode(true);
-                customTable.getElementsByTagName('tbody')[0].appendChild(elementCopy);
+            } else {
+                for (let index = 0; index < table.rows({page: 'current'}).nodes().length; index++) {
+                    let elementCopy = table.rows({page: 'current'}).nodes()[index].cloneNode(true);
+                    customTable.getElementsByTagName('tbody')[0].appendChild(elementCopy);
+                }
             }
 
             return customTable;
