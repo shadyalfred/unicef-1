@@ -17,5 +17,5 @@ return [
     'addGovernorates'  => 'Add Governorate Report',
     'addCountries'     => 'Add Country Report',
     'governorateReportsIndex' => 'Edit Governorate Reports',
-    'syriansReportsIndex' => 'تعديل على سجلات السوريين',
+    'syriansReportsIndex' => 'Edit Syrians Reports',
 ];
