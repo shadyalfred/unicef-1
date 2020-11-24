@@ -58,6 +58,15 @@ class GovernorateReport extends Model
     public $timestamps = false;
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'date',
+    ];
+
+    /**
      * Get the governorate for this report.
      *
      * @return \App\Governorate

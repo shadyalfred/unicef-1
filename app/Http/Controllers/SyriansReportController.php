@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Governorate;
 use App\SyriansReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -222,7 +223,11 @@ class SyriansReportController extends Controller
      */
     public function index()
     {
-        //
+        $syriansReports = SyriansReport::latest('id')->get();
+
+        return view('reports.index.syrians', [
+            'syriansReports' => $syriansReports,
+        ]);
     }
 
     /**
@@ -232,7 +237,11 @@ class SyriansReportController extends Controller
      */
     public function create()
     {
-        //
+        $governorates = Governorate::all();
+
+        return view('reports.create.syrian', [
+            'governorates' => $governorates,
+        ]);
     }
 
     /**
@@ -243,7 +252,26 @@ class SyriansReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'governorate_id'         => 'required',
+            'males_under_5'          => 'required|numeric',
+            'males_from_5_to_15'     => 'required|numeric',
+            'females_under_5'        => 'required|numeric',
+            'females_from_5_to_15'   => 'required|numeric',
+            'pregnancy_visits'       => 'required|numeric',
+            'endangered_pregnancies' => 'required|numeric',
+            'other_visits'           => 'required|numeric',
+            'males_above_15_visits'  => 'required|numeric',
+            'date'                   => 'required',
+        ]);
+
+        SyriansReport::create($validatedData);
+        $governorate = Governorate::find($validatedData['governorate_id']);
+        $governorate = app()->getLocale() === 'en' ? $governorate->name_en : $governorate->name_ar;
+
+        $successMessage = __('A new record was added to the governorate of ') . $governorate;
+
+        return back()->with('success', $successMessage);
     }
 
     /**
@@ -265,7 +293,12 @@ class SyriansReportController extends Controller
      */
     public function edit(SyriansReport $syriansReport)
     {
-        //
+        $governorates = Governorate::all();
+
+        return view('reports.edit.syrians', [
+            'governorates' => $governorates,
+            'report' => $syriansReport,
+        ]);
     }
 
     /**
@@ -277,7 +310,22 @@ class SyriansReportController extends Controller
      */
     public function update(Request $request, SyriansReport $syriansReport)
     {
-        //
+        $validatedData = $request->validate([
+            'governorate_id'         => 'required',
+            'males_under_5'          => 'required|numeric',
+            'males_from_5_to_15'     => 'required|numeric',
+            'females_under_5'        => 'required|numeric',
+            'females_from_5_to_15'   => 'required|numeric',
+            'pregnancy_visits'       => 'required|numeric',
+            'endangered_pregnancies' => 'required|numeric',
+            'other_visits'           => 'required|numeric',
+            'males_above_15_visits'  => 'required|numeric',
+            'date'                   => 'required',
+        ]);
+
+        $syriansReport->update($validatedData);
+
+        return back()->with('success', __('Record was updated successfully!'));
     }
 
     /**
@@ -288,6 +336,8 @@ class SyriansReportController extends Controller
      */
     public function destroy(SyriansReport $syriansReport)
     {
-        //
+        $syriansReport->delete();
+
+        return back()->with('success', __('Record was deleted!'));
     }
 }

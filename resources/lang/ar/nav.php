@@ -13,4 +13,9 @@ return [
     'translations' => 'الترجمات',
     'addNewUser' => 'اضافة مستخدم جديد',
     'switchLanguage' => 'تغيير اللغة',
+    'addSyrians' => 'اضافة تقرير السوريين',
+    'addGovernorates' => 'اضافة تقرير المحافظات',
+    'addCountries' => 'اضافة تقرير البلاد',
+    'governorateReportsIndex' => 'تعديل على سجلات المحافظات',
+    'syriansReportsIndex' => 'تعديل على سجلات السوريين',
 ];

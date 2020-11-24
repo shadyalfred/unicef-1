@@ -137,6 +137,20 @@
                                 <li><a href="{{ route('reports.syrians') }}">@lang('nav.syrians')</a></li>
                                 <li><a href="{{ route('reports.governorates') }}">@lang('nav.governorates')</a></li>
                                 <li><a href="{{ route('reports.countries') }}">@lang('nav.nationalities')</a></li>
+                                <li><a href="{{ route('reports.addSyrians') }}">@lang('nav.addSyrians')</a></li>
+                                <li>
+                                    <a href="{{ route('reports.addGovernorates') }}">@lang('nav.addGovernorates')</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('reports.index.governorate') }}">
+                                        @lang('nav.governorateReportsIndex')
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('reports.index.syrians') }}">
+                                        @lang('nav.syriansReportsIndex')
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="far fa-chart-bar"></i><span class="hide-menu">@lang('nav.charts')</span></a>

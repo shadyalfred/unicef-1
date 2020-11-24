@@ -223,7 +223,11 @@ class GovernorateReportController extends Controller
      */
     public function index()
     {
-        //
+        $governorateReports = GovernorateReport::latest('id')->get();
+
+        return view('reports.index.governorate', [
+            'governorateReports' => $governorateReports,
+        ]);
     }
 
     /**
@@ -233,7 +237,11 @@ class GovernorateReportController extends Controller
      */
     public function create()
     {
-        //
+        $governorates = Governorate::all();
+
+        return view('reports.create.governorate', [
+            'governorates' => $governorates,
+        ]);
     }
 
     /**
@@ -244,16 +252,35 @@ class GovernorateReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'governorate_id'         => 'required',
+            'males_under_5'          => 'required|numeric',
+            'males_from_5_to_15'     => 'required|numeric',
+            'females_under_5'        => 'required|numeric',
+            'females_from_5_to_15'   => 'required|numeric',
+            'pregnancy_visits'       => 'required|numeric',
+            'endangered_pregnancies' => 'required|numeric',
+            'other_visits'           => 'required|numeric',
+            'males_above_15_visits'  => 'required|numeric',
+            'date'                   => 'required',
+        ]);
+
+        GovernorateReport::create($validatedData);
+        $governorate = Governorate::find($validatedData['governorate_id']);
+        $governorate = app()->getLocale() === 'en' ? $governorate->name_en : $governorate->name_ar;
+
+        $successMessage = __('A new record was added to the governorate of ') . $governorate;
+
+        return back()->with('success', $successMessage);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function show(GorvernorateReport $gorvernorateReport)
+    public function show(GovernorateReport $govrernorateReport)
     {
         //
     }
@@ -261,34 +288,56 @@ class GovernorateReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(GorvernorateReport $gorvernorateReport)
+    public function edit(GovernorateReport $governorateReport)
     {
-        //
+        $governorates = Governorate::all();
+
+        return view('reports.edit.governorate', [
+            'governorates' => $governorates,
+            'report' => $governorateReport,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GorvernorateReport $gorvernorateReport)
+    public function update(Request $request, GovernorateReport $governorateReport)
     {
-        //
+        $validatedData = $request->validate([
+            'governorate_id'         => 'required',
+            'males_under_5'          => 'required|numeric',
+            'males_from_5_to_15'     => 'required|numeric',
+            'females_under_5'        => 'required|numeric',
+            'females_from_5_to_15'   => 'required|numeric',
+            'pregnancy_visits'       => 'required|numeric',
+            'endangered_pregnancies' => 'required|numeric',
+            'other_visits'           => 'required|numeric',
+            'males_above_15_visits'  => 'required|numeric',
+            'date'                   => 'required',
+        ]);
+
+        $governorateReport->update($validatedData);
+
+        return back()->with('success', __('Record was updated successfully!'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\GorvernorateReport  $gorvernorateReport
+     * @param  \App\GovernorateReport  $governorateReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GorvernorateReport $gorvernorateReport)
+    public function destroy(GovernorateReport $governorateReport)
     {
-        //
+        $governorateReport->delete();
+
+        return back()->with('success', __('Record was deleted!'));
     }
 }

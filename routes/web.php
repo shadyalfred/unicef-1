@@ -83,6 +83,31 @@ Route::middleware('auth')->group(function () {
         Route::get('import/country', 'ExcelImportController@showCountryForm')->name('import.country.form');
         Route::post('import/country', 'ExcelImportController@importCountry')->name('import.country.import');
 
+    // Create report
+        Route::get('reports/add/governorate', 'GovernorateReportController@create')->name('reports.addGovernorates');
+        Route::get('reports/add/syrian', 'SyriansReportController@create')->name('reports.addSyrians');
+        // Route::get('reports/add/country', 'CountryReportController@create')->name('reports.addCountries');
+
+        Route::post('reports/add/governorate', 'GovernorateReportController@store')->name('reports.storeGovernorates');
+        Route::post('reports/add/syrian', 'SyriansReportController@store')->name('reports.storeSyrians');
+        // Route::post('reports/add/country', 'CountryReportController@store')->name('reports.storeCountries');
+
+    // Index reports
+        Route::get('reports/governorate/all', 'GovernorateReportController@index')->name('reports.index.governorate');
+        Route::get('reports/syrian/all', 'SyriansReportController@index')->name('reports.index.syrians');
+
+    // Edit reports
+        Route::get('reports/governorate/edit/{governorateReport}', 'GovernorateReportController@edit')->name('reports.governorate.edit');
+        Route::get('reports/syrian/edit/{syriansReport}', 'SyriansReportController@edit')->name('reports.syrians.edit');
+
+    // Update reports
+        Route::post('reports/governorate/edit/{governorateReport}', 'GovernorateReportController@update')->name('reports.governorate.update');
+        Route::post('reports/syrian/edit/{syriansReport}', 'SyriansReportController@update')->name('reports.syrians.update');
+
+    // Delete reports
+        Route::delete('reports/governorate/delete/{governorateReport}', 'GovernorateReportController@destroy')->name('reports.governorate.destroy');
+        Route::delete('reports/syrian/delete/{syriansReport}', 'SyriansReportController@destroy')->name('reports.syrians.destroy');
+
     // Reports Tables
     Route::get('reports/syrians', function () {
         return view('reports.syrians');

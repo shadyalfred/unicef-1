@@ -12,5 +12,10 @@ return [
     'addGovernorate'   => 'Add Governorate',
     'translations'     => 'Translations',
     'addNewUser'       => 'Add New User',
-    'switchLanguage'   => 'Switch Language'
+    'switchLanguage'   => 'Switch Language',
+    'addSyrians'       => 'Add Syrian Report',
+    'addGovernorates'  => 'Add Governorate Report',
+    'addCountries'     => 'Add Country Report',
+    'governorateReportsIndex' => 'Edit Governorate Reports',
+    'syriansReportsIndex' => 'تعديل على سجلات السوريين',
 ];
